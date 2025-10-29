@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://yyhcgu8w7jbo"
+path="res://.godot/imported/elian_outro.dialogue-6386e0ddd4d1f96191013b0990f450c5.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/4_outro/outro_components/elian_outro.dialogue"
+dest_files=["res://.godot/imported/elian_outro.dialogue-6386e0ddd4d1f96191013b0990f450c5.tres"]
+
+[params]
+
+defaults=true

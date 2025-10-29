@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bj6se73mnjeih"
+path="res://.godot/imported/elian_sequence_puzzle.dialogue-3ee370f365da24b9491c9488c486c386.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/3_sequence_puzzle/elian_sequence_puzzle.dialogue"
+dest_files=["res://.godot/imported/elian_sequence_puzzle.dialogue-3ee370f365da24b9491c9488c486c386.tres"]
+
+[params]
+
+defaults=true

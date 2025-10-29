@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Quest" load_steps=2 format=3 uid="uid://5cr0std68hjr"]
+
+[ext_resource type="Script" uid="uid://dts1hwdy3phin" path="res://scenes/menus/storybook/components/quest.gd" id="1_muqjk"]
+
+[resource]
+script = ExtResource("1_muqjk")
+title = "Elian"
+description = "juego base creo xd"
+first_scene = "uid://c64p24jne7k5o"
+metadata/_custom_type_script = "uid://dts1hwdy3phin"
