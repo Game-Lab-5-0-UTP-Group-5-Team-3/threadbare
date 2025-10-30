@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bsd67af683lgm"
+path="res://.godot/imported/elian_intro.dialogue-8cbef9af4bc3680b36bde79168843bed.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/0_intro/intro_components/elian_intro.dialogue"
+dest_files=["res://.godot/imported/elian_intro.dialogue-8cbef9af4bc3680b36bde79168843bed.tres"]
+
+[params]
+
+defaults=true
