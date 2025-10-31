@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://bl27h2080a4ly"]
+
+[ext_resource type="Shader" uid="uid://b7yis14t58sj0" path="res://scenes/quests/story_quests/elian/0_intro/elian_intro.gdshader" id="1_klmnr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mn4mm"]
+shader = ExtResource("1_klmnr")
+shader_parameter/frame_color = Vector4(0, 0, 0, 1)
+shader_parameter/frame_thickness = 0.06
+shader_parameter/base_extra = 0.04
+shader_parameter/curvature = 0.15
+shader_parameter/brightness = 1.0
+shader_parameter/scanline_strength = 0.08
+shader_parameter/flicker_strength = 0.02
+shader_parameter/flicker_speed = 120.0
+shader_parameter/char_scale = 32.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yy0pk"]
+shader = ExtResource("1_klmnr")
+shader_parameter/frame_color = Vector4(0, 0, 0, 1)
+shader_parameter/frame_thickness = 0.06
+shader_parameter/base_extra = 0.04
+shader_parameter/curvature = 0.15
+shader_parameter/brightness = 1.0
+shader_parameter/scanline_strength = 0.08
+shader_parameter/flicker_strength = 0.02
+shader_parameter/flicker_speed = 120.0
+shader_parameter/char_scale = 32.0
+
+[node name="CRT_Screen" type="Node2D"]
+material = SubResource("ShaderMaterial_mn4mm")
+
+[node name="ScreenDisplay" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_yy0pk")
+custom_minimum_size = Vector2(64, 48)
+offset_right = 40.0
+offset_bottom = 40.0

@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=4 uid="uid://c64p24jne7k5o"]
+[gd_scene load_steps=13 format=4 uid="uid://c64p24jne7k5o"]
 
+[ext_resource type="TileSet" uid="uid://bqpxe17ayso7c" path="res://tiles/template/floor.tres" id="1_8mdgw"]
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_oi07b"]
 [ext_resource type="Texture2D" uid="uid://b7kuavxctuy3k" path="res://scenes/quests/story_quests/elian/0_intro/intro_components/elian_intro_image.png" id="2_8mdgw"]
 [ext_resource type="SpriteFrames" uid="uid://conwqdkmqsys3" path="res://scenes/quests/story_quests/elian/player_components/elian_player.tres" id="3_g0h5h"]
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="4_y25yr"]
+[ext_resource type="PackedScene" uid="uid://bl27h2080a4ly" path="res://scenes/quests/story_quests/elian/0_intro/intro_components/CRT_Screen.tscn" id="5_g0h5h"]
 [ext_resource type="Resource" uid="uid://bsd67af683lgm" path="res://scenes/quests/story_quests/elian/0_intro/intro_components/elian_intro.dialogue" id="5_qhdv7"]
 [ext_resource type="PackedScene" uid="uid://v3usqiwy5wpr" path="res://scenes/game_elements/props/decoration/rock/rock.tscn" id="6_f4cgy"]
 
@@ -102,8 +104,8 @@ _data = {
 [node name="TileMapLayers" type="Node2D" parent="."]
 
 [node name="Ground" type="TileMapLayer" parent="TileMapLayers"]
-tile_map_data = PackedByteArray("AAAAAAUAAQAAAAEAAAABAAUAAQABAAEAAAACAAUAAQABAAEAAAADAAUAAQABAAEAAAAEAAUAAQABAAEAAAAFAAUAAQABAAEAAAAGAAUAAQABAAEAAAAHAAUAAQABAAEAAAAIAAUAAQABAAEAAAAJAAUAAQABAAEAAAAKAAUAAQABAAEAAAALAAUAAQABAAEAAAAMAAUAAQABAAEAAAANAAUAAQABAAEAAAAOAAUAAQACAAEAAAAAAAYAAQAAAAEAAAAAAAcAAQAAAAEAAAAAAAgAAQAAAAEAAAABAAYAAQABAAEAAAABAAcAAQABAAEAAAABAAgAAQABAAEAAAACAAYAAQABAAEAAAACAAcAAQABAAEAAAACAAgAAQABAAEAAAADAAYAAQABAAEAAAADAAcAAQABAAEAAAADAAgAAQABAAEAAAAEAAYAAQABAAEAAAAEAAcAAQABAAEAAAAEAAgAAQABAAEAAAAFAAYAAQABAAEAAAAFAAcAAQABAAEAAAAFAAgAAQABAAEAAAAGAAYAAQABAAEAAAAGAAcAAQABAAEAAAAGAAgAAQABAAEAAAAHAAYAAQABAAEAAAAHAAcAAQABAAEAAAAHAAgAAQABAAEAAAAIAAYAAQABAAEAAAAIAAcAAQABAAEAAAAIAAgAAQABAAEAAAAJAAYAAQABAAEAAAAJAAcAAQABAAEAAAAJAAgAAQABAAEAAAAKAAYAAQABAAEAAAAKAAcAAQABAAEAAAAKAAgAAQABAAEAAAALAAYAAQABAAEAAAALAAcAAQABAAEAAAALAAgAAQABAAEAAAAMAAYAAQABAAEAAAAMAAcAAQABAAEAAAAMAAgAAQABAAEAAAANAAYAAQABAAEAAAANAAcAAQABAAEAAAANAAgAAQABAAEAAAAOAAYAAQACAAEAAAAOAAcAAQACAAEAAAAOAAgAAQACAAEAAAAAAAAAAQAAAAAAAAAAAAEAAQAAAAEAAAABAAEAAQABAAEAAAACAAEAAQABAAEAAAACAAIAAQABAAEAAAADAAIAAQABAAEAAAAEAAIAAQABAAEAAAAFAAIAAQABAAEAAAAFAAMAAQABAAEAAAAGAAMAAQABAAEAAAAHAAQAAQABAAEAAAAIAAQAAQABAAEAAAAOAAQAAQACAAEAAAAOAAMAAQACAAEAAAAOAAIAAQACAAEAAAAOAAEAAQACAAEAAAAOAAAAAQACAAAAAAANAAQAAQABAAEAAAANAAMAAQABAAEAAAANAAIAAQABAAEAAAANAAEAAQABAAEAAAANAAAAAQABAAAAAAAMAAQAAQABAAEAAAAMAAMAAQABAAEAAAAMAAIAAQABAAEAAAAMAAEAAQABAAEAAAAMAAAAAQABAAAAAAALAAQAAQABAAEAAAALAAMAAQABAAEAAAALAAIAAQABAAEAAAALAAEAAQABAAEAAAALAAAAAQABAAAAAAAKAAQAAQABAAEAAAAKAAMAAQABAAEAAAAKAAIAAQABAAEAAAAKAAEAAQABAAEAAAAKAAAAAQABAAAAAAAJAAQAAQABAAEAAAAJAAMAAQABAAEAAAAJAAIAAQABAAEAAAAJAAEAAQABAAEAAAAJAAAAAQABAAAAAAAIAAMAAQABAAEAAAAIAAIAAQABAAEAAAAIAAEAAQABAAEAAAAIAAAAAQABAAAAAAAHAAMAAQABAAEAAAAHAAIAAQABAAEAAAAHAAEAAQABAAEAAAAHAAAAAQABAAAAAAAGAAQAAQABAAEAAAAGAAIAAQABAAEAAAAGAAEAAQABAAEAAAAGAAAAAQABAAAAAAAFAAQAAQABAAEAAAAFAAEAAQABAAEAAAAFAAAAAQABAAAAAAAEAAQAAQABAAEAAAAEAAMAAQABAAEAAAAEAAEAAQABAAEAAAAEAAAAAQABAAAAAAADAAQAAQABAAEAAAADAAMAAQABAAEAAAADAAEAAQABAAEAAAADAAAAAQABAAAAAAACAAQAAQABAAEAAAACAAMAAQABAAEAAAACAAAAAQABAAAAAAABAAQAAQABAAEAAAABAAMAAQABAAEAAAABAAIAAQABAAEAAAABAAAAAQABAAAAAAAAAAQAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAAIAAQAAAAEAAAA=")
-tile_set = ExtResource("1_oi07b")
+tile_map_data = PackedByteArray("AAAAAAUAAAAAAAEAAAABAAUAAAAAAAEAAAACAAUAAAAAAAEAAAADAAUAAAAAAAEAAAAEAAUAAAAAAAEAAAAFAAUAAAAAAAEAAAAGAAUAAAAAAAEAAAAHAAUAAAAAAAEAAAAIAAUAAAAAAAEAAAAJAAUAAAAAAAEAAAAKAAUAAAAAAAEAAAALAAUAAAAAAAEAAAAMAAUAAAAAAAEAAAANAAUAAAAAAAEAAAAOAAUAAAADAAIAAAAAAAYAAAAAAAEAAAAAAAcAAAAAAAEAAAAAAAgAAAAAAAEAAAABAAYAAAAAAAEAAAABAAcAAAAAAAEAAAABAAgAAAACAAMAAAACAAYAAAAAAAEAAAACAAcAAAAAAAEAAAACAAgAAAACAAMAAAADAAYAAAAAAAEAAAADAAcAAAAAAAEAAAADAAgAAAACAAMAAAAEAAYAAAAAAAEAAAAEAAcAAAAAAAEAAAAEAAgAAAACAAMAAAAFAAYAAAAAAAEAAAAFAAcAAAAAAAEAAAAFAAgAAAACAAMAAAAGAAYAAAAAAAEAAAAGAAcAAAAAAAEAAAAGAAgAAAACAAMAAAAHAAYAAAAAAAEAAAAHAAcAAAAAAAEAAAAHAAgAAAACAAMAAAAIAAYAAAAAAAEAAAAIAAcAAAAAAAEAAAAIAAgAAAACAAMAAAAJAAYAAAAAAAEAAAAJAAcAAAAAAAEAAAAJAAgAAAACAAMAAAAKAAYAAAAAAAEAAAAKAAcAAAAAAAEAAAAKAAgAAAACAAMAAAALAAYAAAAAAAEAAAALAAcAAAAAAAEAAAALAAgAAAACAAMAAAAMAAYAAAAAAAEAAAAMAAcAAAAAAAEAAAAMAAgAAAACAAMAAAANAAYAAAAAAAEAAAANAAcAAAAAAAEAAAANAAgAAAACAAMAAAAOAAYAAAADAAIAAAAOAAcAAAADAAIAAAAOAAgAAAACAAMAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAEAAAABAAEAAAAAAAEAAAACAAEAAAAAAAEAAAACAAIAAAAAAAEAAAADAAIAAAAAAAEAAAAEAAIAAAAAAAEAAAAFAAIAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAQAAAAAAAEAAAAIAAQAAAAAAAEAAAAOAAQAAAADAAIAAAAOAAMAAAADAAIAAAAOAAIAAAADAAIAAAAOAAEAAAADAAIAAAAOAAAAAAADAAIAAAANAAQAAAAAAAEAAAANAAMAAAAAAAEAAAANAAIAAAAAAAEAAAANAAEAAAAAAAEAAAANAAAAAAAAAAEAAAAMAAQAAAAAAAEAAAAMAAMAAAAAAAEAAAAMAAIAAAAAAAEAAAAMAAEAAAAAAAEAAAAMAAAAAAAAAAEAAAALAAQAAAAAAAEAAAALAAMAAAAAAAEAAAALAAIAAAAAAAEAAAALAAEAAAAAAAEAAAALAAAAAAAAAAEAAAAKAAQAAAAAAAEAAAAKAAMAAAAAAAEAAAAKAAIAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAAAAAAAAAEAAAAJAAQAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAEAAAAJAAEAAAAAAAEAAAAJAAAAAAAAAAEAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAEAAAAIAAEAAAAAAAEAAAAIAAAAAAAAAAEAAAAHAAMAAAAAAAEAAAAHAAIAAAAAAAEAAAAHAAEAAAAAAAEAAAAHAAAAAAAAAAEAAAAGAAQAAAAAAAEAAAAGAAIAAAAAAAEAAAAGAAEAAAAAAAEAAAAGAAAAAAAAAAEAAAAFAAQAAAAAAAEAAAAFAAEAAAAAAAEAAAAFAAAAAAAAAAEAAAAEAAQAAAAAAAEAAAAEAAMAAAAAAAEAAAAEAAEAAAAAAAEAAAAEAAAAAAAAAAEAAAADAAQAAAAAAAEAAAADAAMAAAAAAAEAAAADAAEAAAAAAAEAAAADAAAAAAAAAAEAAAACAAQAAAAAAAEAAAACAAMAAAAAAAEAAAACAAAAAAAAAAEAAAABAAQAAAAAAAEAAAABAAMAAAAAAAEAAAABAAIAAAAAAAEAAAABAAAAAAAAAAEAAAAAAAQAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAAIAAAAAAAEAAAA=")
+tile_set = ExtResource("1_8mdgw")
 metadata/_edit_lock_ = true
 
 [node name="IntroImage" type="Sprite2D" parent="TileMapLayers"]
@@ -133,12 +135,245 @@ position = Vector2(400, 349)
 sprite_frames = ExtResource("3_g0h5h")
 animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.0013985833
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OnTheGround"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_vqftx")
 }
+
+[node name="CRT_Screen" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(4.5474735e-13, 4.5474735e-13)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen10" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(4.5474735e-13, 62)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen11" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(64, 62)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen12" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(128, 62)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen13" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(193, 62)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen14" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(255, 62)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen15" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(318, 62)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen16" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(382, 62)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen17" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(447, 62)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen22" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(641, 3)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen23" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(706, 3)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen24" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(770, 3)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen25" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(835, 3)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen26" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(900, 3)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen27" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(900, 65)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen28" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(898, 124)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen29" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(898, 189)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen30" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(898, 251)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen31" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(898, 317)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen32" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(573, 317)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen33" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(573, 257)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen34" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(573, 197)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen35" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(517, 197)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen36" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(510, 253)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen37" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(511, 316)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen38" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(450, 316)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen39" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(450, 259)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen40" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(452, 198)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen41" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(319, 204)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen42" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(318, 261)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen43" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(316, 316)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen44" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(255, 316)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen45" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(255, 263)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen46" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(255, 204)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen47" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(192, 204)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen48" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(192, 261)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen49" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(192, 315)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen50" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(128, 315)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen51" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(128, 259)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen52" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(128, 204)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen53" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(65, 204)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen54" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(65, 257)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen55" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(65, 313)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen56" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(0, 313)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen57" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(0, 251)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen58" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(0, 204)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen18" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(513, 62)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen19" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(576, 62)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen20" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(576, 2)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen21" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(512, 2)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen2" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(65, 4.5474735e-13)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen3" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(127, 0)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen4" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(191, 0)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen5" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(255, 0)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen6" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(319, 0)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen7" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(383, 0)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen8" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(447, -1)
+scale = Vector2(1, 1.284)
+
+[node name="CRT_Screen9" parent="OnTheGround" instance=ExtResource("5_g0h5h")]
+position = Vector2(447, -1)
+scale = Vector2(1, 1.284)
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
 
