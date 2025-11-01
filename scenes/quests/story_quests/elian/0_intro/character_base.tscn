@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7ujlfgbr834c"]
+
+[ext_resource type="SpriteFrames" uid="uid://conwqdkmqsys3" path="res://scenes/quests/story_quests/elian/player_components/elian_player.tres" id="1_20it3"]
+
+[node name="Character" type="AnimatedSprite2D"]
+sprite_frames = ExtResource("1_20it3")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.0013985833
