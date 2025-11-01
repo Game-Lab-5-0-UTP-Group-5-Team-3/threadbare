@@ -1,55 +1,69 @@
 shader_type canvas_item;
-render_mode blend_mix, unshaded;
+render_mode unshaded;
 
-uniform vec4 frame_color = vec4(0.0, 0.0, 0.0, 1.0);
-uniform float frame_thickness = 0.06;
-uniform float base_extra = 0.04;
-uniform float curvature = 0.15;
-uniform float brightness = 1.0;
-uniform float scanline_strength = 0.08;
-uniform float flicker_strength = 0.02;
-uniform float flicker_speed = 120.0;
+// === CONFIGURACIÓN GENERAL ===
+uniform int columns = 4;                // número de pantallas horizontales
+uniform int rows = 4;                   // número de pantallas verticales
+uniform float border_thickness = 0.03;  // grosor del marco negro
 
-uniform sampler2D chars;     // textura de caracteres
-uniform sampler2D noise_tex; // textura de ruido
-uniform float char_scale = 32.0;
+// === COLORES ===
+uniform vec3 screen_color = vec3(1.0);           // blanco puro
+uniform vec3 border_color = vec3(0.0);           // negro puro
+uniform vec3 line_color = vec3(0.0, 1.0, 0.0);   // verde Matrix
 
-void fragment() {
-    vec2 uv = SCREEN_UV;
+// === EFECTO MATRIX ===
+uniform float fall_speed = 1.0;       // velocidad de caída
+uniform float line_density = 40.0;    // densidad (más alto = más líneas)
+uniform float line_spacing = 0.015;   // espacio entre líneas (más alto = más separación)
+uniform float line_thickness = 0.02;  // grosor visible de las líneas
+uniform float brightness = 1.5;       // brillo general de las líneas
 
-    // --- Curvatura tipo CRT ---
-    uv = uv * 2.0 - 1.0;
-    uv.x *= 1.0 + curvature * pow(abs(uv.y), 2.0);
-    uv.y *= 1.0 + curvature * pow(abs(uv.x), 2.0);
-    uv = uv * 0.5 + 0.5;
-
-    // --- Marco con base ---
-    float bottom_extra = base_extra;
-    float left   = step(frame_thickness, uv.x);
-    float right  = step(frame_thickness, 1.0 - uv.x);
-    float top    = step(frame_thickness, uv.y);
-    float bottom = step(frame_thickness + bottom_extra, 1.0 - uv.y);
-    float mask = left * right * top * bottom;
-
-    // --- Lluvia digital estilo Matrix ---
-    vec2 uv_chars = fract(uv * char_scale);
-    float n = texture(noise_tex, uv).g;
-    float scroll = fract(uv.y + TIME * 2.0 + n);
-    vec2 char_uv = (uv_chars + vec2(n, scroll)) / char_scale;
-    vec3 char_color = texture(chars, char_uv).rgb;
-    float drop = step(0.98, fract(scroll * 10.0));
-    vec3 rain_color = char_color * drop * vec3(0.0, 1.0, 0.0);
-
-    // --- Efectos CRT ---
-    float scanline = sin(uv.y * 800.0) * scanline_strength;
-    float flicker = sin(TIME * flicker_speed) * flicker_strength;
-    float light = brightness + flicker - scanline;
-    vec3 screen_col = rain_color * light;
-
-    // --- Combinamos marco + pantalla ---
-    vec3 frame_col = frame_color.rgb;
-    vec3 final_col = mix(frame_col, screen_col, mask);
-
-    COLOR = vec4(final_col, 1.0);
+// === FUNCIÓN DE RUIDO ===
+float hash21(vec2 p) {
+	p = fract(p * vec2(234.34, 543.45));
+	p += dot(p, p + 23.34);
+	return fract(p.x * p.y);
 }
 
+// === FUNCIÓN PRINCIPAL ===
+void fragment() {
+	vec2 uv = UV;
+
+	// --- División de cuadrícula ---
+	vec2 grid_uv = uv * vec2(float(columns), float(rows));
+	vec2 cell = fract(grid_uv);
+	vec2 id = floor(grid_uv);
+
+	// --- Bordes entre pantallas ---
+	float bx = step(border_thickness, cell.x) * step(cell.x, 1.0 - border_thickness);
+	float by = step(border_thickness, cell.y) * step(cell.y, 1.0 - border_thickness);
+	float inside = bx * by;
+
+	// --- Fondo blanco + bordes negros ---
+	vec3 col = mix(border_color, screen_color, inside);
+
+	// --- Efecto Matrix (líneas cayendo) ---
+	float seed = hash21(id);
+	float time_offset = TIME * fall_speed + seed;
+
+	// Multiplicamos densidad por el tamaño de la celda para escalar correctamente
+	float x_pattern = fract(cell.x * line_density + seed);
+	float y_scroll = fract(cell.y + time_offset);
+
+	// Definir líneas verticales (más visible sobre blanco)
+	float lines = smoothstep(0.5 - line_thickness, 0.5 + line_thickness, x_pattern);
+
+	// Movimiento vertical (la "lluvia")
+	float mask = smoothstep(0.0, 0.3, 1.0 - y_scroll);
+
+	// Aplicamos espaciado configurable
+	float spacing_mod = step(line_spacing, abs(fract(x_pattern / (line_spacing + 0.001)) - 0.5));
+
+	// Color final de las líneas
+	vec3 matrix_color = line_color * lines * mask * spacing_mod * brightness;
+
+	// Combinamos sobre el fondo
+	col = mix(col, matrix_color, inside);
+
+	COLOR = vec4(col, 1.0);
+}

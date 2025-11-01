@@ -31,6 +31,8 @@ material = SubResource("ShaderMaterial_mn4mm")
 
 [node name="ScreenDisplay" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_yy0pk")
-custom_minimum_size = Vector2(64, 48)
+custom_minimum_size = Vector2(64, 64)
 offset_right = 40.0
 offset_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
