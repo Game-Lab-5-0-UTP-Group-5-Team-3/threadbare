@@ -1,11 +1,30 @@
-[gd_scene load_steps=11 format=4 uid="uid://c64p24jne7k5o"]
+[gd_scene load_steps=21 format=4 uid="uid://c64p24jne7k5o"]
 
+[ext_resource type="TileSet" uid="uid://bqpxe17ayso7c" path="res://tiles/template/floor.tres" id="1_8mdgw"]
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_oi07b"]
 [ext_resource type="Texture2D" uid="uid://b7kuavxctuy3k" path="res://scenes/quests/story_quests/elian/0_intro/intro_components/elian_intro_image.png" id="2_8mdgw"]
-[ext_resource type="SpriteFrames" uid="uid://conwqdkmqsys3" path="res://scenes/quests/story_quests/elian/player_components/elian_player.tres" id="3_g0h5h"]
+[ext_resource type="PackedScene" uid="uid://b7ujlfgbr834c" path="res://scenes/quests/story_quests/elian/0_intro/character_base.tscn" id="4_qhdv7"]
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="4_y25yr"]
 [ext_resource type="Resource" uid="uid://bsd67af683lgm" path="res://scenes/quests/story_quests/elian/0_intro/intro_components/elian_intro.dialogue" id="5_qhdv7"]
 [ext_resource type="PackedScene" uid="uid://v3usqiwy5wpr" path="res://scenes/game_elements/props/decoration/rock/rock.tscn" id="6_f4cgy"]
+[ext_resource type="Script" uid="uid://c5d1d2ovu7fat" path="res://scenes/quests/story_quests/elian/0_intro/character_clones.gd" id="6_qhdv7"]
+
+[sub_resource type="GDScript" id="GDScript_f4cgy"]
+script/source = "extends Node2D
+
+# Ajusta la cámara al arrancar el nivel para que el mosaico se vea 1:1
+func _ready() -> void:
+	var cam: Camera2D = $Camera2D
+	if cam:
+		cam.make_current()
+		cam.zoom = Vector2(1, 1)
+		cam.position = Vector2(480, 270)  # centro exacto para 960x540
+		# límites para que el viewport no “muestre de más”
+		cam.limit_left = 0
+		cam.limit_top = 0
+		cam.limit_right = 960
+		cam.limit_bottom = 540
+"
 
 [sub_resource type="Animation" id="Animation_jcnck"]
 length = 0.001
@@ -97,48 +116,260 @@ _data = {
 &"walk_on": SubResource("Animation_iuv8c")
 }
 
+[sub_resource type="Shader" id="Shader_g0h5h"]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+// === CONFIGURACIÓN GENERAL ===
+uniform int columns = 4;                // número de pantallas horizontales
+uniform int rows = 4;                   // número de pantallas verticales
+uniform float border_thickness = 0.03;  // grosor del marco negro
+
+// === COLORES ===
+uniform vec3 screen_color = vec3(1.0);           // blanco puro
+uniform vec3 border_color = vec3(0.0);           // negro puro
+uniform vec3 line_color = vec3(0.0, 1.0, 0.0);   // verde Matrix
+
+// === EFECTO MATRIX ===
+uniform float fall_speed = 1.0;       // velocidad de caída
+uniform float line_density = 40.0;    // densidad (más alto = más líneas)
+uniform float line_spacing = 0.15;   // espacio entre líneas (más alto = más separación)
+uniform float line_thickness = 1;  // grosor visible de las líneas
+uniform float brightness = 0.6;       // brillo general de las líneas
+
+// === FUNCIÓN DE RUIDO ===
+float hash21(vec2 p) {
+	p = fract(p * vec2(234.34, 543.45));
+	p += dot(p, p + 23.34);
+	return fract(p.x * p.y);
+}
+
+// === FUNCIÓN PRINCIPAL ===
+void fragment() {
+	vec2 uv = UV;
+
+	// --- División de cuadrícula ---
+	vec2 grid_uv = uv * vec2(float(columns), float(rows));
+	vec2 cell = fract(grid_uv);
+	vec2 id = floor(grid_uv);
+
+	// --- Bordes entre pantallas ---
+	float bx = step(border_thickness, cell.x) * step(cell.x, 1.0 - border_thickness);
+	float by = step(border_thickness, cell.y) * step(cell.y, 1.0 - border_thickness);
+	float inside = bx * by;
+
+	// --- Fondo blanco + bordes negros ---
+	vec3 col = mix(border_color, screen_color, inside);
+
+	// --- Efecto Matrix (líneas cayendo) ---
+	float seed = hash21(id);
+	float time_offset = TIME * fall_speed + seed;
+
+	// Multiplicamos densidad por el tamaño de la celda para escalar correctamente
+	float x_pattern = fract(cell.x * line_density + seed);
+	float y_scroll = fract(cell.y + time_offset);
+
+	// Definir líneas verticales (más visible sobre blanco)
+	float lines = smoothstep(0.5 - line_thickness, 0.5 + line_thickness, x_pattern);
+
+	// Movimiento vertical (la \"lluvia\")
+	float mask = smoothstep(0.0, 0.3, 1.0 - y_scroll);
+
+	// Aplicamos espaciado configurable
+	float spacing_mod = step(line_spacing, abs(fract(x_pattern / (line_spacing + 0.001)) - 0.5));
+
+	// Color final de las líneas
+	vec3 matrix_color = line_color * lines * mask * spacing_mod * brightness;
+
+	// Combinamos sobre el fondo
+	col = mix(col, matrix_color, inside);
+
+	COLOR = vec4(col, 1.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y25yr"]
+shader = SubResource("Shader_g0h5h")
+shader_parameter/columns = 4
+shader_parameter/rows = 4
+shader_parameter/border_thickness = 0.03
+shader_parameter/screen_color = Vector3(1, 1, 1)
+shader_parameter/border_color = Vector3(0, 0, 0)
+shader_parameter/line_color = Vector3(0, 1, 0)
+shader_parameter/fall_speed = 1.0
+shader_parameter/line_density = 40.0
+shader_parameter/line_spacing = 0.15
+shader_parameter/line_thickness = 1.0
+shader_parameter/brightness = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qhdv7"]
+shader = SubResource("Shader_g0h5h")
+shader_parameter/columns = 4
+shader_parameter/rows = 4
+shader_parameter/border_thickness = 0.03
+shader_parameter/screen_color = Vector3(1, 1, 1)
+shader_parameter/border_color = Vector3(0, 0, 0)
+shader_parameter/line_color = Vector3(0, 1, 0)
+shader_parameter/fall_speed = 1.0
+shader_parameter/line_density = 40.0
+shader_parameter/line_spacing = 0.15
+shader_parameter/line_thickness = 1.0
+shader_parameter/brightness = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4cgy"]
+shader = SubResource("Shader_g0h5h")
+shader_parameter/columns = 4
+shader_parameter/rows = 4
+shader_parameter/border_thickness = 0.03
+shader_parameter/screen_color = Vector3(1, 1, 1)
+shader_parameter/border_color = Vector3(0, 0, 0)
+shader_parameter/line_color = Vector3(0, 1, 0)
+shader_parameter/fall_speed = 1.0
+shader_parameter/line_density = 40.0
+shader_parameter/line_spacing = 0.15
+shader_parameter/line_thickness = 1.0
+shader_parameter/brightness = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jcnck"]
+shader = SubResource("Shader_g0h5h")
+shader_parameter/columns = 4
+shader_parameter/rows = 4
+shader_parameter/border_thickness = 0.03
+shader_parameter/screen_color = Vector3(1, 1, 1)
+shader_parameter/border_color = Vector3(0, 0, 0)
+shader_parameter/line_color = Vector3(0, 1, 0)
+shader_parameter/fall_speed = 1.0
+shader_parameter/line_density = 40.0
+shader_parameter/line_spacing = 0.15
+shader_parameter/line_thickness = 1.0
+shader_parameter/brightness = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_koo5c"]
+shader = SubResource("Shader_g0h5h")
+shader_parameter/columns = 4
+shader_parameter/rows = 4
+shader_parameter/border_thickness = 0.03
+shader_parameter/screen_color = Vector3(1, 1, 1)
+shader_parameter/border_color = Vector3(0, 0, 0)
+shader_parameter/line_color = Vector3(0, 1, 0)
+shader_parameter/fall_speed = 1.0
+shader_parameter/line_density = 40.0
+shader_parameter/line_spacing = 0.15
+shader_parameter/line_thickness = 1.0
+shader_parameter/brightness = 0.6
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iuv8c"]
+shader = SubResource("Shader_g0h5h")
+shader_parameter/columns = 4
+shader_parameter/rows = 4
+shader_parameter/border_thickness = 0.03
+shader_parameter/screen_color = Vector3(1, 1, 1)
+shader_parameter/border_color = Vector3(0, 0, 0)
+shader_parameter/line_color = Vector3(0, 1, 0)
+shader_parameter/fall_speed = 1.0
+shader_parameter/line_density = 40.0
+shader_parameter/line_spacing = 0.15
+shader_parameter/line_thickness = 1.0
+shader_parameter/brightness = 0.6
+
 [node name="Intro" type="Node2D"]
+script = SubResource("GDScript_f4cgy")
 
 [node name="TileMapLayers" type="Node2D" parent="."]
 
 [node name="Ground" type="TileMapLayer" parent="TileMapLayers"]
-tile_map_data = PackedByteArray("AAAAAAUAAQAAAAEAAAABAAUAAQABAAEAAAACAAUAAQABAAEAAAADAAUAAQABAAEAAAAEAAUAAQABAAEAAAAFAAUAAQABAAEAAAAGAAUAAQABAAEAAAAHAAUAAQABAAEAAAAIAAUAAQABAAEAAAAJAAUAAQABAAEAAAAKAAUAAQABAAEAAAALAAUAAQABAAEAAAAMAAUAAQABAAEAAAANAAUAAQABAAEAAAAOAAUAAQACAAEAAAAAAAYAAQAAAAEAAAAAAAcAAQAAAAEAAAAAAAgAAQAAAAEAAAABAAYAAQABAAEAAAABAAcAAQABAAEAAAABAAgAAQABAAEAAAACAAYAAQABAAEAAAACAAcAAQABAAEAAAACAAgAAQABAAEAAAADAAYAAQABAAEAAAADAAcAAQABAAEAAAADAAgAAQABAAEAAAAEAAYAAQABAAEAAAAEAAcAAQABAAEAAAAEAAgAAQABAAEAAAAFAAYAAQABAAEAAAAFAAcAAQABAAEAAAAFAAgAAQABAAEAAAAGAAYAAQABAAEAAAAGAAcAAQABAAEAAAAGAAgAAQABAAEAAAAHAAYAAQABAAEAAAAHAAcAAQABAAEAAAAHAAgAAQABAAEAAAAIAAYAAQABAAEAAAAIAAcAAQABAAEAAAAIAAgAAQABAAEAAAAJAAYAAQABAAEAAAAJAAcAAQABAAEAAAAJAAgAAQABAAEAAAAKAAYAAQABAAEAAAAKAAcAAQABAAEAAAAKAAgAAQABAAEAAAALAAYAAQABAAEAAAALAAcAAQABAAEAAAALAAgAAQABAAEAAAAMAAYAAQABAAEAAAAMAAcAAQABAAEAAAAMAAgAAQABAAEAAAANAAYAAQABAAEAAAANAAcAAQABAAEAAAANAAgAAQABAAEAAAAOAAYAAQACAAEAAAAOAAcAAQACAAEAAAAOAAgAAQACAAEAAAAAAAAAAQAAAAAAAAAAAAEAAQAAAAEAAAABAAEAAQABAAEAAAACAAEAAQABAAEAAAACAAIAAQABAAEAAAADAAIAAQABAAEAAAAEAAIAAQABAAEAAAAFAAIAAQABAAEAAAAFAAMAAQABAAEAAAAGAAMAAQABAAEAAAAHAAQAAQABAAEAAAAIAAQAAQABAAEAAAAOAAQAAQACAAEAAAAOAAMAAQACAAEAAAAOAAIAAQACAAEAAAAOAAEAAQACAAEAAAAOAAAAAQACAAAAAAANAAQAAQABAAEAAAANAAMAAQABAAEAAAANAAIAAQABAAEAAAANAAEAAQABAAEAAAANAAAAAQABAAAAAAAMAAQAAQABAAEAAAAMAAMAAQABAAEAAAAMAAIAAQABAAEAAAAMAAEAAQABAAEAAAAMAAAAAQABAAAAAAALAAQAAQABAAEAAAALAAMAAQABAAEAAAALAAIAAQABAAEAAAALAAEAAQABAAEAAAALAAAAAQABAAAAAAAKAAQAAQABAAEAAAAKAAMAAQABAAEAAAAKAAIAAQABAAEAAAAKAAEAAQABAAEAAAAKAAAAAQABAAAAAAAJAAQAAQABAAEAAAAJAAMAAQABAAEAAAAJAAIAAQABAAEAAAAJAAEAAQABAAEAAAAJAAAAAQABAAAAAAAIAAMAAQABAAEAAAAIAAIAAQABAAEAAAAIAAEAAQABAAEAAAAIAAAAAQABAAAAAAAHAAMAAQABAAEAAAAHAAIAAQABAAEAAAAHAAEAAQABAAEAAAAHAAAAAQABAAAAAAAGAAQAAQABAAEAAAAGAAIAAQABAAEAAAAGAAEAAQABAAEAAAAGAAAAAQABAAAAAAAFAAQAAQABAAEAAAAFAAEAAQABAAEAAAAFAAAAAQABAAAAAAAEAAQAAQABAAEAAAAEAAMAAQABAAEAAAAEAAEAAQABAAEAAAAEAAAAAQABAAAAAAADAAQAAQABAAEAAAADAAMAAQABAAEAAAADAAEAAQABAAEAAAADAAAAAQABAAAAAAACAAQAAQABAAEAAAACAAMAAQABAAEAAAACAAAAAQABAAAAAAABAAQAAQABAAEAAAABAAMAAQABAAEAAAABAAIAAQABAAEAAAABAAAAAQABAAAAAAAAAAQAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAAIAAQAAAAEAAAA=")
-tile_set = ExtResource("1_oi07b")
-metadata/_edit_lock_ = true
+texture_repeat = 1
+position = Vector2(-2, 0)
+tile_map_data = PackedByteArray("AAAAAAUAAAAAAAEAAAABAAUAAAAAAAEAAAACAAUAAAAAAAEAAAADAAUAAAAAAAEAAAAEAAUAAAAAAAEAAAAFAAUAAAAAAAEAAAAGAAUAAAAAAAEAAAAHAAUAAAAAAAEAAAAIAAUAAAAAAAEAAAAJAAUAAAAAAAEAAAAKAAUAAAAAAAEAAAALAAUAAAAAAAEAAAAMAAUAAAAAAAEAAAANAAUAAAAAAAEAAAAOAAUAAAADAAIAAAAAAAYAAAAAAAEAAAAAAAcAAAAAAAEAAAAAAAgAAAAAAAEAAAABAAYAAAAAAAEAAAABAAcAAAAAAAEAAAABAAgAAAACAAMAAAACAAYAAAAAAAEAAAACAAcAAAAAAAEAAAACAAgAAAACAAMAAAADAAYAAAAAAAEAAAADAAcAAAAAAAEAAAADAAgAAAACAAMAAAAEAAYAAAAAAAEAAAAEAAcAAAAAAAEAAAAEAAgAAAACAAMAAAAFAAYAAAAAAAEAAAAFAAcAAAAAAAEAAAAFAAgAAAACAAMAAAAGAAYAAAAAAAEAAAAGAAcAAAAAAAEAAAAGAAgAAAACAAMAAAAHAAYAAAAAAAEAAAAHAAcAAAAAAAEAAAAHAAgAAAACAAMAAAAIAAYAAAAAAAEAAAAIAAcAAAAAAAEAAAAIAAgAAAACAAMAAAAJAAYAAAAAAAEAAAAJAAcAAAAAAAEAAAAJAAgAAAACAAMAAAAKAAYAAAAAAAEAAAAKAAcAAAAAAAEAAAAKAAgAAAACAAMAAAALAAYAAAAAAAEAAAALAAcAAAAAAAEAAAALAAgAAAACAAMAAAAMAAYAAAAAAAEAAAAMAAcAAAAAAAEAAAAMAAgAAAACAAMAAAANAAYAAAAAAAEAAAANAAcAAAAAAAEAAAANAAgAAAACAAMAAAAOAAYAAAADAAIAAAAOAAcAAAADAAIAAAAOAAgAAAACAAMAAAAAAAAAAAAAAAEAAAAAAAEAAAAAAAEAAAABAAEAAAAAAAEAAAACAAEAAAAAAAEAAAACAAIAAAAAAAEAAAADAAIAAAAAAAEAAAAEAAIAAAAAAAEAAAAFAAIAAAAAAAEAAAAFAAMAAAAAAAEAAAAGAAMAAAAAAAEAAAAHAAQAAAAAAAEAAAAIAAQAAAAAAAEAAAAOAAQAAAADAAIAAAAOAAMAAAADAAIAAAAOAAIAAAADAAIAAAAOAAEAAAADAAIAAAAOAAAAAAADAAIAAAANAAQAAAAAAAEAAAANAAMAAAAAAAEAAAANAAIAAAAAAAEAAAANAAEAAAAAAAEAAAANAAAAAAAAAAEAAAAMAAQAAAAAAAEAAAAMAAMAAAAAAAEAAAAMAAIAAAAAAAEAAAAMAAEAAAAAAAEAAAAMAAAAAAAAAAEAAAALAAQAAAAAAAEAAAALAAMAAAAAAAEAAAALAAIAAAAAAAEAAAALAAEAAAAAAAEAAAALAAAAAAAAAAEAAAAKAAQAAAAAAAEAAAAKAAMAAAAAAAEAAAAKAAIAAAAAAAEAAAAKAAEAAAAAAAEAAAAKAAAAAAAAAAEAAAAJAAQAAAAAAAEAAAAJAAMAAAAAAAEAAAAJAAIAAAAAAAEAAAAJAAEAAAAAAAEAAAAJAAAAAAAAAAEAAAAIAAMAAAAAAAEAAAAIAAIAAAAAAAEAAAAIAAEAAAAAAAEAAAAIAAAAAAAAAAEAAAAHAAMAAAAAAAEAAAAHAAIAAAAAAAEAAAAHAAEAAAAAAAEAAAAHAAAAAAAAAAEAAAAGAAQAAAAAAAEAAAAGAAIAAAAAAAEAAAAGAAEAAAAAAAEAAAAGAAAAAAAAAAEAAAAFAAQAAAAAAAEAAAAFAAEAAAAAAAEAAAAFAAAAAAAAAAEAAAAEAAQAAAAAAAEAAAAEAAMAAAAAAAEAAAAEAAEAAAAAAAEAAAAEAAAAAAAAAAEAAAADAAQAAAAAAAEAAAADAAMAAAAAAAEAAAADAAEAAAAAAAEAAAADAAAAAAAAAAEAAAACAAQAAAAAAAEAAAACAAMAAAAAAAEAAAACAAAAAAAAAAEAAAABAAQAAAAAAAEAAAABAAMAAAAAAAAAAAABAAIAAAAAAAEAAAABAAAAAAAAAAEAAAAAAAQAAAAAAAEAAAAAAAMAAAAAAAEAAAAAAAIAAAAAAAEAAAA=")
+tile_set = ExtResource("1_8mdgw")
 
 [node name="IntroImage" type="Sprite2D" parent="TileMapLayers"]
+visible = false
 position = Vector2(770, 227)
 scale = Vector2(0.802083, 0.802083)
 texture = ExtResource("2_8mdgw")
 
 [node name="Sand" type="TileMapLayer" parent="TileMapLayers"]
-tile_map_data = PackedByteArray("AAAKAAEABgAAAAAAAAAKAAIABgADAAEAAAAKAAMABgADAAEAAAAKAAQABgADAAEAAAANAAEABgACAAAAAAANAAIABgADAAEAAAANAAMABgADAAEAAAANAAQABgADAAEAAAAKAAUABgAAAAIAAAALAAEABgABAAMAAAALAAUABgABAAMAAAAMAAEABgABAAMAAAAMAAUABgABAAMAAAANAAUABgACAAIAAAAAAAcAAQAGAAMAAAABAAcAAQAGAAMAAAACAAcAAQAGAAMAAAADAAcAAQAGAAMAAAAEAAcAAQAGAAMAAAAFAAcAAQAGAAMAAAAGAAcAAQAGAAMAAAAHAAcAAQAGAAMAAAAIAAcAAQAGAAMAAAAJAAcAAQAGAAMAAAAKAAcAAQAGAAMAAAALAAcAAQAGAAMAAAAMAAcAAQAGAAMAAAANAAcAAQAGAAMAAAAOAAcAAQAGAAMAAAA=")
+visible = false
+tile_map_data = PackedByteArray("AAAKAAEABgAAAAAAAAAKAAIABgADAAEAAAAKAAMABgADAAEAAAAKAAQAAAAAAAAAAAANAAEABgACAAAAAAANAAIABgADAAEAAAANAAMABgADAAEAAAANAAQABgADAAEAAAAKAAUABgAAAAIAAAALAAEABgABAAMAAAALAAUABgABAAMAAAAMAAEABgABAAMAAAAMAAUABgABAAMAAAANAAUABgACAAIAAAAAAAcAAQAGAAMAAAABAAcAAQAGAAMAAAACAAcAAQAGAAMAAAADAAcAAQAGAAMAAAAEAAcAAQAGAAMAAAAFAAcAAQAGAAMAAAAGAAcAAQAGAAMAAAAHAAcAAQAGAAMAAAAIAAcAAQAGAAMAAAAJAAcAAQAGAAMAAAAKAAcAAQAGAAMAAAALAAcAAQAGAAMAAAAMAAcAAQAGAAMAAAANAAcAAQAGAAMAAAAOAAcAAQAGAAMAAAA=")
 tile_set = ExtResource("1_oi07b")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(153, 366)
-zoom = Vector2(1.333, 1.333)
+position = Vector2(480, 270)
 limit_left = 0
 limit_top = 0
-limit_right = 960
-limit_bottom = 540
-position_smoothing_enabled = true
+limit_right = 1024
+limit_bottom = 576
 editor_draw_limits = true
+metadata/_edit_lock_ = true
 
 [node name="OnTheGround" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="Character" type="AnimatedSprite2D" parent="OnTheGround"]
+[node name="Character" parent="OnTheGround" instance=ExtResource("4_qhdv7")]
 position = Vector2(400, 349)
-sprite_frames = ExtResource("3_g0h5h")
-animation = &"idle"
-autoplay = "idle"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="OnTheGround"]
 root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_vqftx")
 }
+
+[node name="ScreenWall" type="Node2D" parent="OnTheGround"]
+
+[node name="WallSurface" type="ColorRect" parent="OnTheGround/ScreenWall"]
+z_index = 1
+material = SubResource("ShaderMaterial_y25yr")
+custom_minimum_size = Vector2(256, 256)
+offset_left = -1.0
+offset_right = 255.0
+offset_bottom = 256.0
+
+[node name="WallSurface2" type="ColorRect" parent="OnTheGround/ScreenWall"]
+material = SubResource("ShaderMaterial_qhdv7")
+custom_minimum_size = Vector2(256, 256)
+offset_left = 384.0
+offset_right = 640.0
+offset_bottom = 256.0
+
+[node name="WallSurface3" type="ColorRect" parent="OnTheGround/ScreenWall"]
+material = SubResource("ShaderMaterial_f4cgy")
+custom_minimum_size = Vector2(256, 256)
+offset_top = 320.0
+offset_right = 256.0
+offset_bottom = 576.0
+
+[node name="WallSurface4" type="ColorRect" parent="OnTheGround/ScreenWall"]
+material = SubResource("ShaderMaterial_jcnck")
+custom_minimum_size = Vector2(256, 256)
+offset_left = 384.0
+offset_top = 320.0
+offset_right = 640.0
+offset_bottom = 576.0
+
+[node name="WallSurface5" type="ColorRect" parent="OnTheGround/ScreenWall"]
+material = SubResource("ShaderMaterial_koo5c")
+custom_minimum_size = Vector2(256, 256)
+offset_left = 768.0
+offset_top = 320.0
+offset_right = 960.0
+offset_bottom = 512.0
+
+[node name="WallSurface6" type="ColorRect" parent="OnTheGround/ScreenWall"]
+material = SubResource("ShaderMaterial_iuv8c")
+custom_minimum_size = Vector2(256, 256)
+offset_left = 768.0
+offset_right = 1024.0
+offset_bottom = 256.0
+
+[node name="CharacterClones" type="Node2D" parent="OnTheGround/ScreenWall"]
+script = ExtResource("6_qhdv7")
+sprite_scene = ExtResource("4_qhdv7")
+cols_per_surface = null
+rows_per_surface = null
+z_index_for_clones = 5
+scale_65 = null
+margin_px = null
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
 
@@ -150,4 +381,5 @@ next_scene = "uid://chw4t5xa5r7aa"
 metadata/_custom_type_script = "uid://x1mxt6bmei2o"
 
 [node name="Rock" parent="." instance=ExtResource("6_f4cgy")]
+visible = false
 position = Vector2(125, 403)
