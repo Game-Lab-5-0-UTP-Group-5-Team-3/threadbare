@@ -17,9 +17,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_bjv46"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -4629.33, 278.319, 0, 0, 0, 0, 2660, 266.98)
+"points": PackedVector2Array(0, 0, 0, 0, -4507.9937, 198.94666, 0, 0, 0, 0, -3807.9946, 91.22705, 0, 0, 0, 0, -2333.3296, 119.57434, 0, 0, 0, 0, -970.66504, 68.54932, 0, 0, 0, 0, 643.999, 122.40906, 0, 0, 0, 0, 1903.998, 65.7146, 0, 0, 0, 0, 3499.995, 369.03003, 0, 0, 0, 0, -4629.3267, 283.9884)
 }
-point_count = 2
+point_count = 8
 
 [sub_resource type="Curve2D" id="Curve2D_tgemy"]
 _data = {
@@ -71,7 +71,7 @@ editor_draw_limits = true
 y_sort_enabled = true
 
 [node name="Guard1-GoingBackAndForth" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
-position = Vector2(526, 470)
+position = Vector2(539, 442)
 sprite_frames = ExtResource("6_vhan8")
 patrol_path = NodePath("../Guard1-PatrolPath")
 move_speed = 200.0
