@@ -34,7 +34,7 @@ func _spawn_all() -> void:
 		push_warning("⚠️ CharacterClones no tiene padre válido (ScreenWall).")
 		return
 
-	# Detectar las 6 paredes tipo ColorRect
+	# Detectar las paredes tipo ColorRect
 	var surfaces: Array[ColorRect] = []
 	for i in range(120): # hasta ~2 segundos
 		surfaces.clear()
@@ -57,26 +57,35 @@ func _spawn_all() -> void:
 
 	print("🎯 TOTAL:", surfaces.size() * cols_per_surface * rows_per_surface, "clones.")
 
-	# No hace falta aplicar offset ni redibujar manualmente:
-	# el shader se basa en UV locales y se actualiza solo.
 
-
+# ===============================
+# Generación proporcional por tamaño
+# ===============================
 func _spawn_on_surface(surface: ColorRect, bucket: Node2D) -> int:
-	var rect := Rect2(surface.position, surface.size)
-	var cell := rect.size / Vector2(cols_per_surface, rows_per_surface)
-	var total_spawned := 0
+	var rect: Rect2 = Rect2(surface.position, surface.size)
 
-	for r in range(rows_per_surface):
-		for c in range(cols_per_surface):
-			var inst := sprite_scene.instantiate()
+	# 🔧 Ajuste automático de densidad según tamaño
+	var base_size: float = 256.0
+	var scale_factor: float = surface.size.x / base_size
+
+	# Calcula filas y columnas proporcionales (mínimo 1x1)
+	var local_cols: int = max(1, int(round(cols_per_surface * scale_factor)))
+	var local_rows: int = max(1, int(round(rows_per_surface * scale_factor)))
+
+	var cell: Vector2 = rect.size / Vector2(local_cols, local_rows)
+	var total_spawned: int = 0
+
+	for r in range(local_rows):
+		for c in range(local_cols):
+			var inst: Node2D = sprite_scene.instantiate()
 			bucket.add_child(inst)
 
-			# Posición global centrada en la celda
-			var local_center := Vector2(c + 0.5, r + 0.5) * cell
-			var global_pos := surface.get_global_transform_with_canvas().origin + local_center
+			# Posición centrada en la celda
+			var local_center: Vector2 = Vector2(c + 0.5, r + 0.5) * cell
+			var global_pos: Vector2 = surface.global_position + local_center
 			inst.global_position = global_pos
 
-			# Escala 65 %
+			# Escala al 65%
 			if "scale" in inst:
 				inst.scale = scale_65
 			elif inst.has_method("set_scale"):
