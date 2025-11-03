@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://chw4t5xa5r7aa"]
+[gd_scene load_steps=19 format=4 uid="uid://chw4t5xa5r7aa"]
 
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_laed2"]
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="2_muj4l"]
@@ -17,21 +17,15 @@
 
 [sub_resource type="Curve2D" id="Curve2D_bjv46"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -4507.9937, 198.94666, 0, 0, 0, 0, -3807.9946, 91.22705, 0, 0, 0, 0, -2333.3296, 119.57434, 0, 0, 0, 0, -970.66504, 68.54932, 0, 0, 0, 0, 643.999, 122.40906, 0, 0, 0, 0, 1903.998, 65.7146, 0, 0, 0, 0, 3499.995, 369.03003, 0, 0, 0, 0, -4629.3267, 283.9884)
+"points": PackedVector2Array(0, 0, 0, 0, -4507.9937, 198.94666, 0, 0, 0, 0, -3807.9946, 91.22705, 0, 0, 0, 0, -3082.4648, 121.42261, 0, 0, 0, 0, -2659.996, 121.89307, 0, 0, 0, 0, -2333.3296, 119.57434, 0, 0, 0, 0, -970.66504, 68.54932, 0, 0, 0, 0, 643.999, 122.40906, 0, 0, 0, 0, 1614.6602, 150.24072, 0, 0, 0, 0, 1903.998, 65.7146, 0, 0, 0, 0, 3499.995, 369.03003, 0, 0, 0, 0, -4629.3267, 283.9884)
 }
-point_count = 8
+point_count = 11
 
 [sub_resource type="Curve2D" id="Curve2D_tgemy"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 497.84277, -89.36401, 0, 0, 0, 0, 496.43668, 200.24274, 0, 0, 0, 0, 177.24892, 202.82843, 0, 0, 0, 0, 168.81224, -90.65692, 0, 0, 0, 0, 497.84277, -89.36401)
 }
 point_count = 5
-
-[sub_resource type="Curve2D" id="Curve2D_laed2"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 150, 0)
-}
-point_count = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ubl2b"]
 size = Vector2(168.25, 122)
@@ -80,34 +74,121 @@ editor_draw_limits = true
 y_sort_enabled = true
 
 [node name="Guard1-GoingBackAndForth" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
-position = Vector2(524, 331.182)
+position = Vector2(731, 276.182)
 sprite_frames = ExtResource("6_vhan8")
 patrol_path = NodePath("../Guard1-PatrolPath")
 move_speed = 200.0
 
 [node name="Guard1-PatrolPath" type="Path2D" parent="EnemyGuards"]
 top_level = true
-position = Vector2(1007, 261)
+position = Vector2(1214, 206)
 scale = Vector2(0.107143, 0.352768)
 curve = SubResource("Curve2D_bjv46")
 
-[node name="Guard2-RunningInCircles" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
+[node name="Guard2-GoingBackAndForth2" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
+position = Vector2(2846.0002, 1701.182)
+sprite_frames = ExtResource("6_vhan8")
+patrol_path = NodePath("../Guard2-PatrolPath2")
+move_speed = 200.0
+
+[node name="Guard2-PatrolPath2" type="Path2D" parent="EnemyGuards"]
+top_level = true
+position = Vector2(3329.0002, 1631)
+scale = Vector2(0.107143, 0.352768)
+curve = SubResource("Curve2D_bjv46")
+
+[node name="Guard3-GoingBackAndForth3" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
+position = Vector2(640.0005, 2202.1821)
+sprite_frames = ExtResource("6_vhan8")
+patrol_path = NodePath("../Guard3-PatrolPath3")
+move_speed = 200.0
+
+[node name="Guard3-PatrolPath3" type="Path2D" parent="EnemyGuards"]
+top_level = true
+position = Vector2(1123.0005, 2132)
+scale = Vector2(0.107143, 0.352768)
+curve = SubResource("Curve2D_bjv46")
+
+[node name="Guard4-GoingBackAndForth4" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
+position = Vector2(194.00003, 2875.1821)
+sprite_frames = ExtResource("6_vhan8")
+patrol_path = NodePath("../Guard4-PatrolPath4")
+move_speed = 200.0
+
+[node name="Guard4-PatrolPath4" type="Path2D" parent="EnemyGuards"]
+top_level = true
+position = Vector2(677, 2805)
+scale = Vector2(0.107143, 0.352768)
+curve = SubResource("Curve2D_bjv46")
+
+[node name="Guard5-GoingBackAndForth5" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
+position = Vector2(3677, 230.182)
+sprite_frames = ExtResource("6_vhan8")
+patrol_path = NodePath("../Guard5-PatrolPath5")
+move_speed = 200.0
+
+[node name="Guard5-PatrolPath5" type="Path2D" parent="EnemyGuards"]
+top_level = true
+position = Vector2(4160, 160)
+scale = Vector2(0.107143, 0.352768)
+curve = SubResource("Curve2D_bjv46")
+
+[node name="Guard6-GoingBackAndForth6" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
+position = Vector2(5140.0005, 3686.1821)
+sprite_frames = ExtResource("6_vhan8")
+patrol_path = NodePath("../Guard6-PatrolPath6")
+move_speed = 200.0
+
+[node name="Guard6-PatrolPath6" type="Path2D" parent="EnemyGuards"]
+top_level = true
+position = Vector2(5623.0005, 3616)
+scale = Vector2(0.107143, 0.352768)
+curve = SubResource("Curve2D_bjv46")
+
+[node name="Guard1-RunningInCircles" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
 position = Vector2(340, 675)
 sprite_frames = ExtResource("6_vhan8")
-patrol_path = NodePath("../Guard2-RunningPath")
+patrol_path = NodePath("../Guard1-RunningPath")
 wait_time = 0.3
 move_speed = 2000.0
 player_instantly_detected_on_sight = true
 time_to_detect_player = 2.5
 detection_area_scale = 0.30000000000000004
 
-[node name="Guard2-RunningPath" type="Path2D" parent="EnemyGuards"]
+[node name="Guard1-RunningPath" type="Path2D" parent="EnemyGuards"]
 position = Vector2(-14.055908, 744.11975)
 scale = Vector2(0.71118015, 0.7734628)
 curve = SubResource("Curve2D_tgemy")
 
-[node name="Guard3-PatrolPath" type="Path2D" parent="EnemyGuards"]
-curve = SubResource("Curve2D_laed2")
+[node name="Guard2-RunningInCircles2" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
+position = Vector2(2556.056, 450.88025)
+sprite_frames = ExtResource("6_vhan8")
+patrol_path = NodePath("../Guard2-RunningPath2")
+wait_time = 0.3
+move_speed = 2000.0
+player_instantly_detected_on_sight = true
+time_to_detect_player = 2.5
+detection_area_scale = 0.30000000000000004
+
+[node name="Guard2-RunningPath2" type="Path2D" parent="EnemyGuards"]
+position = Vector2(2202, 520)
+scale = Vector2(0.71118015, 0.7734628)
+curve = SubResource("Curve2D_tgemy")
+
+[node name="Guard3-RunningInCircles3" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
+position = Vector2(5698.0557, 1679.8802)
+sprite_frames = ExtResource("6_vhan8")
+patrol_path = NodePath("../Guard3-RunningPath3")
+wait_time = 0.3
+move_speed = 2000.0
+player_instantly_detected_on_sight = true
+time_to_detect_player = 2.5
+detection_area_scale = 0.30000000000000004
+
+[node name="Guard3-RunningPath3" type="Path2D" parent="EnemyGuards"]
+position = Vector2(5344, 1749)
+scale = Vector2(0.71118015, 0.7734628)
+curve = SubResource("Curve2D_tgemy")
 
 [node name="Checkpoints" type="Node2D" parent="."]
 y_sort_enabled = true

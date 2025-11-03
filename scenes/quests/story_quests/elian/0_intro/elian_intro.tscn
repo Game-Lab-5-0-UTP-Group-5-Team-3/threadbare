@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="4_y25yr"]
 [ext_resource type="Resource" uid="uid://bsd67af683lgm" path="res://scenes/quests/story_quests/elian/0_intro/intro_components/elian_intro.dialogue" id="5_qhdv7"]
 [ext_resource type="PackedScene" uid="uid://v3usqiwy5wpr" path="res://scenes/game_elements/props/decoration/rock/rock.tscn" id="6_f4cgy"]
-[ext_resource type="Script" path="res://scenes/quests/story_quests/elian/0_intro/character_clones.gd" id="6_qhdv7"]
+[ext_resource type="Script" uid="uid://c5d1d2ovu7fat" path="res://scenes/quests/story_quests/elian/0_intro/character_clones.gd" id="6_qhdv7"]
 
 [sub_resource type="GDScript" id="GDScript_f4cgy"]
 script/source = "extends Node2D
