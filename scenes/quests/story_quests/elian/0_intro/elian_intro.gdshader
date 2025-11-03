@@ -14,9 +14,9 @@ uniform vec3 line_color = vec3(0.0, 1.0, 0.0);   // verde Matrix
 // === EFECTO MATRIX ===
 uniform float fall_speed = 1.0;       // velocidad de caída
 uniform float line_density = 40.0;    // densidad (más alto = más líneas)
-uniform float line_spacing = 0.015;   // espacio entre líneas (más alto = más separación)
-uniform float line_thickness = 0.02;  // grosor visible de las líneas
-uniform float brightness = 1.5;       // brillo general de las líneas
+uniform float line_spacing = 0.15;    // espacio entre líneas (más alto = más separación)
+uniform float line_thickness = 1.0;   // grosor visible de las líneas
+uniform float brightness = 0.6;       // brillo general de las líneas
 
 // === FUNCIÓN DE RUIDO ===
 float hash21(vec2 p) {
@@ -24,6 +24,9 @@ float hash21(vec2 p) {
 	p += dot(p, p + 23.34);
 	return fract(p.x * p.y);
 }
+
+// === NUEVO: accedemos a lo que hay detrás (clones, fondo, etc.) ===
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear;
 
 // === FUNCIÓN PRINCIPAL ===
 void fragment() {
@@ -62,8 +65,10 @@ void fragment() {
 	// Color final de las líneas
 	vec3 matrix_color = line_color * lines * mask * spacing_mod * brightness;
 
-	// Combinamos sobre el fondo
+	// Combinamos el efecto Matrix con el fondo del panel
 	col = mix(col, matrix_color, inside);
 
-	COLOR = vec4(col, 1.0);
+	// Combinamos con lo que hay detrás en el canvas ===
+	vec4 behind = texture(SCREEN_TEXTURE, SCREEN_UV);
+	COLOR = mix(behind, vec4(col, 1.0), 0.9); // 0.9 = efecto fuerte; usa 0.7 para ver más al clon
 }
