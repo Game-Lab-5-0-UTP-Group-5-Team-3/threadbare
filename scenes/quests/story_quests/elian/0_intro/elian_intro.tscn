@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b7kuavxctuy3k" path="res://scenes/quests/story_quests/elian/0_intro/intro_components/elian_intro_image.png" id="2_8mdgw"]
 [ext_resource type="PackedScene" uid="uid://b7ujlfgbr834c" path="res://scenes/quests/story_quests/elian/0_intro/character_base.tscn" id="4_qhdv7"]
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="4_y25yr"]
-[ext_resource type="Script" uid="uid://b14f4bmpm7ypa" path="res://scenes/quests/story_quests/elian/0_intro/camerafollow_2d.gd" id="5_f4cgy"]
+[ext_resource type="Script" path="res://scenes/quests/story_quests/elian/0_intro/camerafollow_2d.gd" id="5_f4cgy"]
 [ext_resource type="Resource" uid="uid://bsd67af683lgm" path="res://scenes/quests/story_quests/elian/0_intro/intro_components/elian_intro.dialogue" id="5_qhdv7"]
 [ext_resource type="Shader" uid="uid://b7yis14t58sj0" path="res://scenes/quests/story_quests/elian/0_intro/elian_intro.gdshader" id="5_y25yr"]
 [ext_resource type="PackedScene" uid="uid://v3usqiwy5wpr" path="res://scenes/game_elements/props/decoration/rock/rock.tscn" id="6_f4cgy"]
