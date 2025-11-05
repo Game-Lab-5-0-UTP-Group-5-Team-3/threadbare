@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dx4u34wiulxae"
+path="res://.godot/imported/sign4.dialogue-600df695872b1245e6ef3eb2b1fb1cb3.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sign4.dialogue"
+dest_files=["res://.godot/imported/sign4.dialogue-600df695872b1245e6ef3eb2b1fb1cb3.tres"]
+
+[params]
+
+defaults=true

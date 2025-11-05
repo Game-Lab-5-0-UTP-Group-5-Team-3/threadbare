@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://chw4t5xa5r7aa"]
+[gd_scene load_steps=37 format=4 uid="uid://chw4t5xa5r7aa"]
 
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_laed2"]
 [ext_resource type="TileSet" uid="uid://d30304ne3bph" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/tileselaberinto.tres" id="2_mjdok"]
@@ -23,6 +23,11 @@
 [ext_resource type="Script" uid="uid://rk7ys26uo4u8" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/key_system.gd" id="19_vhan8"]
 [ext_resource type="Script" uid="uid://du8wfijr35r35" path="res://scenes/game_elements/props/interact_area/components/interact_area.gd" id="20_7d2ll"]
 [ext_resource type="Script" uid="uid://edcifob4jc4s" path="res://scenes/game_logic/talk_behavior.gd" id="21_3pchq"]
+[ext_resource type="Texture2D" uid="uid://c3l7lhhu5de88" path="res://assets/third_party/tiny-swords/Deco/16.png" id="23_pv8sv"]
+[ext_resource type="Resource" uid="uid://by0hbwsjgnjf8" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sign1.dialogue" id="24_4jcdn"]
+[ext_resource type="Resource" uid="uid://bw3hudo166a7p" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sign2.dialogue" id="25_bjv46"]
+[ext_resource type="Resource" uid="uid://cwgg67rt35ek8" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sign3.dialogue" id="26_tgemy"]
+[ext_resource type="Resource" uid="uid://dx4u34wiulxae" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sign4.dialogue" id="27_ubl2b"]
 
 [sub_resource type="Curve2D" id="Curve2D_bjv46"]
 _data = {
@@ -48,6 +53,9 @@ size = Vector2(138, 129)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3pchq"]
 size = Vector2(76.6875, 46.703125)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4jcdn"]
+radius = 70.724815
 
 [node name="StealthTemplateLevel" type="Node2D"]
 y_sort_enabled = true
@@ -117,6 +125,7 @@ curve = SubResource("Curve2D_bjv46")
 
 [node name="Checkpoints" type="Node2D" parent="."]
 y_sort_enabled = true
+position = Vector2(2936, 482)
 
 [node name="Checkpoint" parent="Checkpoints" instance=ExtResource("7_3288y")]
 position = Vector2(363, 1909)
@@ -209,6 +218,98 @@ shape = SubResource("RectangleShape2D_3pchq")
 
 [node name="TalkBehavior" type="Node" parent="Interactables/Door" node_paths=PackedStringArray("interact_area")]
 script = ExtResource("21_3pchq")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="Sign1" type="Node2D" parent="Interactables"]
+position = Vector2(3129, 2457)
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Sign1"]
+position = Vector2(-134, 22)
+texture = ExtResource("23_pv8sv")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Sign1"]
+position = Vector2(-130, 35)
+collision_layer = 32
+script = ExtResource("20_7d2ll")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Sign1/InteractArea"]
+position = Vector2(1, -13)
+shape = SubResource("CircleShape2D_4jcdn")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Sign1" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
+dialogue = ExtResource("24_4jcdn")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="Sign2" type="Node2D" parent="Interactables"]
+position = Vector2(2615, 2323)
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Sign2"]
+position = Vector2(-134, 22)
+texture = ExtResource("23_pv8sv")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Sign2"]
+position = Vector2(-130, 35)
+collision_layer = 32
+script = ExtResource("20_7d2ll")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Sign2/InteractArea"]
+position = Vector2(1, -13)
+shape = SubResource("CircleShape2D_4jcdn")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Sign2" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
+dialogue = ExtResource("25_bjv46")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="Sign3" type="Node2D" parent="Interactables"]
+position = Vector2(2366, 2359)
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Sign3"]
+position = Vector2(-134, 22)
+texture = ExtResource("23_pv8sv")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Sign3"]
+position = Vector2(-130, 35)
+collision_layer = 32
+script = ExtResource("20_7d2ll")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Sign3/InteractArea"]
+position = Vector2(1, -13)
+shape = SubResource("CircleShape2D_4jcdn")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Sign3" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
+dialogue = ExtResource("26_tgemy")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="Sign4" type="Node2D" parent="Interactables"]
+position = Vector2(2008, 2389)
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Sign4"]
+position = Vector2(-134, 22)
+texture = ExtResource("23_pv8sv")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Sign4"]
+position = Vector2(-130, 35)
+collision_layer = 32
+script = ExtResource("20_7d2ll")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Sign4/InteractArea"]
+position = Vector2(1, -13)
+shape = SubResource("CircleShape2D_4jcdn")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Sign4" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
+dialogue = ExtResource("27_ubl2b")
 interact_area = NodePath("../InteractArea")
 metadata/_custom_type_script = "uid://edcifob4jc4s"
 

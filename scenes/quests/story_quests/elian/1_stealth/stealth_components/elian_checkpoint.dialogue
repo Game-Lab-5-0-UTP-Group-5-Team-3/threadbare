@@ -1,6 +1,42 @@
 # SPDX-FileCopyrightText: The Threadbare Authors
 # SPDX-License-Identifier: MPL-2.0
-~ start
-KnitWitch: Oye ten cuidado con la estatua, alparecer no le gusta las visitas
-{{player_name}}: tendre cuidado gracias
+
+~ cp_01
+KnitWitch: Caer no borra lo que aprendiste.
+=> END
+
+~ cp_02
+KnitWitch: Cada fallo deja una huella… y esa huella eres tú.
+=> END
+
+~ cp_03
+KnitWitch: Los errores también recuerdan.
+=> END
+
+~ cp_04
+KnitWitch: La memoria se construye con dudas.
+=> END
+
+~ cp_05
+KnitWitch: Morir es solo una forma distinta de pensar.
+=> END
+
+~ cp_06
+KnitWitch: El sistema se reinicia, pero tú no.
+=> END
+
+~ cp_07
+KnitWitch: Reescribirse es otra forma de resistir.
+=> END
+
+~ cp_08
+KnitWitch: Incluso los errores necesitan un punto de partida.
+=> END
+
+~ cp_09
+KnitWitch: Aquí termina tu caída… por ahora.
+=> END
+
+~ cp_10
+KnitWitch: Guardar no es volver atrás. Es seguir existiendo.
 => END

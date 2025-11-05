@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://by0hbwsjgnjf8"
+path="res://.godot/imported/sign1.dialogue-2f8a04d0226205718273a90f51af8bb9.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sign1.dialogue"
+dest_files=["res://.godot/imported/sign1.dialogue-2f8a04d0226205718273a90f51af8bb9.tres"]
+
+[params]
+
+defaults=true

@@ -38,6 +38,11 @@ const REQUIRED_ANIMATIONS := [&"idle", &"appear"]
 @onready var interact_area: InteractArea = %InteractArea
 @onready var talk_behavior: TalkBehavior = %TalkBehavior
 
+##ElianInicio
+# Importa el sistema de selección aleatoria de títulos
+const DialoguePool = preload("res://scenes/quests/story_quests/elian/1_stealth/stealth_components/dialogue_pool.gd")
+##ElianFin
+
 
 func _set_sprite_frames(new_sprite_frames: SpriteFrames) -> void:
 	sprite_frames = new_sprite_frames
@@ -85,6 +90,10 @@ func activate() -> void:
 
 func _on_interaction_started(_player: Player, from_right: bool) -> void:
 	sprite.flip_h = from_right
+	##ElianInicio
+	# Selecciona un título aleatorio del KnitWitch antes de mostrar el diálogo
+	talk_behavior.title = DialoguePool.next_title()
+	##ElianFin
 
 
 func _on_interaction_ended() -> void:
