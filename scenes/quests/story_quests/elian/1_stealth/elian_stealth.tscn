@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=4 uid="uid://chw4t5xa5r7aa"]
+[gd_scene load_steps=31 format=4 uid="uid://chw4t5xa5r7aa"]
 
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_laed2"]
 [ext_resource type="TileSet" uid="uid://d30304ne3bph" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/tileselaberinto.tres" id="2_mjdok"]
@@ -14,6 +14,15 @@
 [ext_resource type="Resource" uid="uid://cxex2csso2liy" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_collected.dialogue" id="12_4jcdn"]
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="13_37mfa"]
 [ext_resource type="Resource" uid="uid://cveidk1j6fkxp" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_stealth.dialogue" id="14_oaao6"]
+[ext_resource type="Script" uid="uid://b21bqxe2afc7i" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/keys_hud.gd" id="15_3288y"]
+[ext_resource type="Texture2D" uid="uid://b8yn4tog2cnaw" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/estructuras(decoracion)/llave 1.png" id="15_muj4l"]
+[ext_resource type="Script" uid="uid://dlbwolmgakaqq" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/key.gd" id="15_wudb4"]
+[ext_resource type="Texture2D" uid="uid://bwycwmhn0d3oe" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/estructuras(decoracion)/puertagrande1.png" id="16_mjdok"]
+[ext_resource type="Script" uid="uid://dkw2htyyyp415" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/door.gd" id="17_rcsnj"]
+[ext_resource type="Resource" uid="uid://d3olg2woausdw" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/door.dialogue" id="19_7laax"]
+[ext_resource type="Script" uid="uid://rk7ys26uo4u8" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/key_system.gd" id="19_vhan8"]
+[ext_resource type="Script" uid="uid://du8wfijr35r35" path="res://scenes/game_elements/props/interact_area/components/interact_area.gd" id="20_7d2ll"]
+[ext_resource type="Script" uid="uid://edcifob4jc4s" path="res://scenes/game_logic/talk_behavior.gd" id="21_3pchq"]
 
 [sub_resource type="Curve2D" id="Curve2D_bjv46"]
 _data = {
@@ -27,6 +36,18 @@ size = Vector2(168.25, 122)
 [sub_resource type="Resource" id="Resource_cxldm"]
 script = ExtResource("11_pv8sv")
 metadata/_custom_type_script = "uid://bgmwplmj3bfls"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mjdok"]
+radius = 26.907248
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_wudb4"]
+radius = 29.15476
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wudb4"]
+size = Vector2(138, 129)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3pchq"]
+size = Vector2(76.6875, 46.703125)
 
 [node name="StealthTemplateLevel" type="Node2D"]
 y_sort_enabled = true
@@ -62,7 +83,7 @@ tile_map_data = PackedByteArray("AAAAAAAABAADAAEAAAABAAAABAADAAEAAAACAAAABAADAAE
 tile_set = ExtResource("2_mjdok")
 
 [node name="Player" parent="." groups=["hook_listener"] instance=ExtResource("3_mjdok")]
-position = Vector2(3153, 2724)
+position = Vector2(3108, 2722)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("4_wudb4")
 
@@ -120,3 +141,78 @@ collected_dialogue = ExtResource("12_4jcdn")
 script = ExtResource("13_37mfa")
 dialogue = ExtResource("14_oaao6")
 metadata/_custom_type_script = "uid://x1mxt6bmei2o"
+
+[node name="StoryHUDs" type="Node" parent="."]
+
+[node name="KeysHUD" type="CanvasLayer" parent="StoryHUDs"]
+script = ExtResource("15_3288y")
+
+[node name="CountLabel" type="Label" parent="StoryHUDs/KeysHUD"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+text = "🔑: 0/2"
+
+[node name="MsgLabel" type="Label" parent="StoryHUDs/KeysHUD"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Interactables" type="Node" parent="."]
+
+[node name="Keys" type="Node" parent="Interactables"]
+
+[node name="Key1" type="Area2D" parent="Interactables/Keys" groups=["keys"]]
+script = ExtResource("15_wudb4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Keys/Key1"]
+position = Vector2(2673, 2382)
+texture = ExtResource("15_muj4l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Keys/Key1"]
+position = Vector2(2674, 2382)
+shape = SubResource("CircleShape2D_mjdok")
+
+[node name="Key2" type="Area2D" parent="Interactables/Keys" groups=["keys"]]
+script = ExtResource("15_wudb4")
+key_id = "key_2"
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Keys/Key2"]
+position = Vector2(2687, 2529)
+texture = ExtResource("15_muj4l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Keys/Key2"]
+position = Vector2(2688, 2530)
+shape = SubResource("CircleShape2D_wudb4")
+
+[node name="Door" type="StaticBody2D" parent="Interactables"]
+script = ExtResource("17_rcsnj")
+dialogue = ExtResource("19_7laax")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Door"]
+position = Vector2(2748, 2693)
+texture = ExtResource("16_mjdok")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Door"]
+position = Vector2(2746, 2694)
+shape = SubResource("RectangleShape2D_wudb4")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Door"]
+position = Vector2(2754, 2536)
+collision_layer = 32
+script = ExtResource("20_7d2ll")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Door/InteractArea"]
+position = Vector2(-2, 27)
+shape = SubResource("RectangleShape2D_3pchq")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Door" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="KeySystem" type="Node" parent="."]
+script = ExtResource("19_vhan8")
+
+[connection signal="tried_to_open" from="Interactables/Door" to="KeySystem" method="_on_door_tried_to_open"]

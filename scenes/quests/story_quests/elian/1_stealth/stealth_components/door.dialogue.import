@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://d3olg2woausdw"
+path="res://.godot/imported/door.dialogue-15f564a5b2bf4b46e957f26b8a10e5b1.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/door.dialogue"
+dest_files=["res://.godot/imported/door.dialogue-15f564a5b2bf4b46e957f26b8a10e5b1.tres"]
+
+[params]
+
+defaults=true
