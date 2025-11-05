@@ -60,9 +60,8 @@ tile_set = ExtResource("2_muj4l")
 tile_set = ExtResource("2_muj4l")
 
 [node name="Player" parent="." groups=["hook_listener"] instance=ExtResource("3_mjdok")]
-position = Vector2(172, 1196)
+position = Vector2(172, 452)
 scale = Vector2(1.5, 1.5)
-mode = 1
 sprite_frames = ExtResource("4_wudb4")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
