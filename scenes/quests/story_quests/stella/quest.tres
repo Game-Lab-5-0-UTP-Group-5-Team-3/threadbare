@@ -10,5 +10,4 @@ description = "Stella and the Missing Star follows a young girl who journeys acr
 authors = Array[String](["Heather Drolet", "Joana Filizola", "Justin Bourque", "Stephen Reid", "Will Thompson", "Manuel Quiñones"])
 affiliation = "Endless"
 first_scene = "uid://d1fkvy1cmjcao"
-animation_name = &""
 metadata/_custom_type_script = "uid://dts1hwdy3phin"
