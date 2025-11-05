@@ -5,8 +5,6 @@
 do animation_player.play(&"walk_on")
 do animation_player.animation_finished
 
-Elian: Le puse Angelo a la Roca porque no hace nada :v, ¿ta bien no?
-
 Angelo: ¿Quién eres tú? ¿Acaso eres… humano?
 
 Elian: Soy Elian… pero, ¿qué es este lugar? ¿Y quién eres tú?
