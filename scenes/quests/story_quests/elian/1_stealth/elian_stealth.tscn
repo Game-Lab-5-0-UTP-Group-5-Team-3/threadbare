@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://chw4t5xa5r7aa"]
+[gd_scene load_steps=35 format=4 uid="uid://chw4t5xa5r7aa"]
 
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_laed2"]
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="2_muj4l"]
@@ -7,13 +7,63 @@
 [ext_resource type="PackedScene" uid="uid://d37mebu7atru7" path="res://scenes/game_elements/characters/enemies/guard/guard.tscn" id="5_rcsnj"]
 [ext_resource type="SpriteFrames" uid="uid://cj415i7521e8v" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_guard_enemy.tres" id="6_vhan8"]
 [ext_resource type="PackedScene" uid="uid://dua6mynlw2ptw" path="res://scenes/game_elements/props/checkpoint/checkpoint.tscn" id="7_3288y"]
-[ext_resource type="Resource" uid="uid://jbkoevvll8h7" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint.dialogue" id="8_7d2ll"]
+[ext_resource type="Resource" uid="uid://jbkoevvll8h7" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint1.dialogue" id="8_7d2ll"]
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="9_3pchq"]
 [ext_resource type="PackedScene" uid="uid://fuhl3l6gxq5k" path="res://scenes/game_elements/props/collectible_item/collectible_item.tscn" id="10_7laax"]
 [ext_resource type="Script" uid="uid://bgmwplmj3bfls" path="res://scenes/globals/game_state/inventory/inventory_item.gd" id="11_pv8sv"]
 [ext_resource type="Resource" uid="uid://cxex2csso2liy" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_collected.dialogue" id="12_4jcdn"]
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="13_37mfa"]
 [ext_resource type="Resource" uid="uid://cveidk1j6fkxp" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_stealth.dialogue" id="14_oaao6"]
+[ext_resource type="Script" uid="uid://c3gyjme1sao52" path="res://scenes/quests/story_quests/elian/1_stealth/key_hud.gd" id="15_mjdok"]
+[ext_resource type="Texture2D" uid="uid://b10hdfd5m5mj4" path="res://assets/third_party/tiny-swords/Deco/04.png" id="15_muj4l"]
+[ext_resource type="Script" uid="uid://dondoa04gc166" path="res://scenes/quests/story_quests/elian/1_stealth/key_item.gd" id="17_wudb4"]
+[ext_resource type="Texture2D" uid="uid://drfnq08l2wbgy" path="res://assets/third_party/tiny-swords/Deco/03.png" id="18_rcsnj"]
+[ext_resource type="Script" uid="uid://btkjsglhdtrdp" path="res://scenes/quests/story_quests/elian/1_stealth/sophiadoor.gd" id="18_vhan8"]
+[ext_resource type="Resource" uid="uid://cinxi5ysl8hrc" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_sophiadoor.dialogue" id="19_7d2ll"]
+[ext_resource type="Script" uid="uid://du8wfijr35r35" path="res://scenes/game_elements/props/interact_area/components/interact_area.gd" id="20_3288y"]
+[ext_resource type="Script" uid="uid://dpht4v56piabq" path="res://scenes/quests/story_quests/elian/1_stealth/machine_1.gd" id="22_3pchq"]
+[ext_resource type="Texture2D" uid="uid://7afi18x3x1dm" path="res://assets/third_party/tiny-swords/Deco/18.png" id="23_7laax"]
+[ext_resource type="Resource" uid="uid://dhhp3iwurrdg8" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_machine1.dialogue" id="23_pv8sv"]
+
+[sub_resource type="GDScript" id="GDScript_7laax"]
+script/source = "extends Node
+
+func _ready():
+	print(\"🧩 Debug Input Lock iniciado.\")
+	print_tree()
+
+func _process(_delta):
+	# Detectar si el juego está pausado
+	if get_tree().paused:
+		print(\"⏸️ Árbol PAUSADO (get_tree().paused = true)\")
+	else:
+		print(\"▶️ Árbol activo\")
+
+	# Detectar si el Player está procesando input
+	var player := get_tree().get_first_node_in_group(\"player\")
+	if player:
+		if player.is_processing_input():
+			print(\"✅ Player está procesando input.\")
+		else:
+			print(\"🚫 Player NO procesa input.\")
+
+	# Detectar si algún nodo UI (como Balloon) está visible
+	for node in get_tree().get_nodes_in_group(\"UI\"):
+		if node.visible:
+			print(\"💬 Nodo UI visible:\", node.name)
+
+	# Detectar quién tiene foco
+	var focus_owner := get_viewport().gui_get_focus_owner()
+	if focus_owner:
+		print(\"🎯 Foco actual en:\", focus_owner.name)
+	else:
+		print(\"⚪ Nadie tiene foco (OK)\")
+
+	# Si presionas ESC, se despausa manualmente
+	if Input.is_action_just_pressed(\"ui_cancel\"):
+		get_tree().paused = false
+		print(\"🧠 Árbol despausado manualmente.\")
+"
 
 [sub_resource type="Curve2D" id="Curve2D_bjv46"]
 _data = {
@@ -34,10 +84,25 @@ size = Vector2(168.25, 122)
 script = ExtResource("11_pv8sv")
 metadata/_custom_type_script = "uid://bgmwplmj3bfls"
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_wudb4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcsnj"]
+size = Vector2(313.5, 211)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3pchq"]
+size = Vector2(173, 64.3125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7laax"]
+size = Vector2(84, 109)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pv8sv"]
+size = Vector2(84, 110)
+
 [node name="StealthTemplateLevel" type="Node2D"]
 y_sort_enabled = true
+script = SubResource("GDScript_7laax")
 
-[node name="StealthGameLogic" type="Node" parent="."]
+[node name="StealthGameLogic" type="Node" parent="." groups=["stealth_logic"]]
 script = ExtResource("1_laed2")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
@@ -60,7 +125,7 @@ tile_set = ExtResource("2_muj4l")
 tile_set = ExtResource("2_muj4l")
 
 [node name="Player" parent="." instance=ExtResource("3_mjdok")]
-position = Vector2(131, 463)
+position = Vector2(162, 471)
 sprite_frames = ExtResource("4_wudb4")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -146,7 +211,7 @@ scale = Vector2(0.107143, 0.352768)
 curve = SubResource("Curve2D_bjv46")
 
 [node name="Guard1-RunningInCircles" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
-position = Vector2(340, 675)
+position = Vector2(354.0559, 1366.8802)
 sprite_frames = ExtResource("6_vhan8")
 patrol_path = NodePath("../Guard1-RunningPath")
 wait_time = 0.3
@@ -156,7 +221,7 @@ time_to_detect_player = 2.5
 detection_area_scale = 0.30000000000000004
 
 [node name="Guard1-RunningPath" type="Path2D" parent="EnemyGuards"]
-position = Vector2(-14.055908, 744.11975)
+position = Vector2(0, 1436)
 scale = Vector2(0.71118015, 0.7734628)
 curve = SubResource("Curve2D_tgemy")
 
@@ -216,3 +281,94 @@ collected_dialogue = ExtResource("12_4jcdn")
 script = ExtResource("13_37mfa")
 dialogue = ExtResource("14_oaao6")
 metadata/_custom_type_script = "uid://x1mxt6bmei2o"
+
+[node name="KeyHUD" type="CanvasLayer" parent="."]
+script = ExtResource("15_mjdok")
+
+[node name="MarginContainer" type="MarginContainer" parent="KeyHUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="KeyHUD/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="KeyHUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("15_muj4l")
+
+[node name="Label" type="Label" parent="KeyHUD/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "0 / 2"
+
+[node name="KeyItem1" type="Area2D" parent="."]
+position = Vector2(916, 450)
+script = ExtResource("17_wudb4")
+
+[node name="Sprite2D" type="Sprite2D" parent="KeyItem1"]
+texture = ExtResource("15_muj4l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KeyItem1"]
+position = Vector2(2, -4)
+shape = SubResource("CircleShape2D_wudb4")
+
+[node name="KeyItem2" type="Area2D" parent="."]
+position = Vector2(1232, 471)
+script = ExtResource("17_wudb4")
+
+[node name="Sprite2D" type="Sprite2D" parent="KeyItem2"]
+texture = ExtResource("15_muj4l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KeyItem2"]
+position = Vector2(2, -4)
+shape = SubResource("CircleShape2D_wudb4")
+
+[node name="SophIADoor" type="StaticBody2D" parent="."]
+script = ExtResource("18_vhan8")
+locked_dialogue = ExtResource("19_7d2ll")
+
+[node name="Sprite2D" type="Sprite2D" parent="SophIADoor"]
+position = Vector2(227.5, 1000)
+scale = Vector2(4.984375, 3.28125)
+texture = ExtResource("18_rcsnj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SophIADoor"]
+position = Vector2(227, 1015)
+shape = SubResource("RectangleShape2D_rcsnj")
+
+[node name="InteractArea" type="Area2D" parent="SophIADoor"]
+position = Vector2(227, 886)
+collision_layer = 32
+script = ExtResource("20_3288y")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SophIADoor/InteractArea"]
+position = Vector2(0, 34)
+shape = SubResource("RectangleShape2D_3pchq")
+
+[node name="Machine1" type="Node2D" parent="."]
+position = Vector2(256, 379)
+script = ExtResource("22_3pchq")
+dialogue_machine = ExtResource("23_pv8sv")
+
+[node name="Sprite2D" type="Sprite2D" parent="Machine1"]
+position = Vector2(302, 368)
+texture = ExtResource("23_7laax")
+
+[node name="InteractArea" type="Area2D" parent="Machine1"]
+position = Vector2(302, 351)
+collision_layer = 32
+script = ExtResource("20_3288y")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Machine1/InteractArea"]
+position = Vector2(5, 25.5)
+shape = SubResource("RectangleShape2D_7laax")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Machine1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Machine1/StaticBody2D"]
+position = Vector2(305, 382)
+shape = SubResource("RectangleShape2D_pv8sv")
+
+[connection signal="key_collected" from="KeyItem1" to="StealthGameLogic" method="_on_key_item_key_collected"]
+[connection signal="key_collected" from="KeyItem2" to="StealthGameLogic" method="_on_key_item_key_collected"]

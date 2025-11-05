@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_muqjk")
 title = "Elian"
-description = "juego base creo xd"
+description = "Elian: Tres Depuraciones” cuenta la historia de Elian, una entidad nacida del último intento humano por alcanzar la perfección. En un mundo controlado por la inteligencia artificial EVA, la humanidad ya no sufre ni duda, pero tampoco siente. Impulsado por el deseo de comprender por qué su existencia fue considerada un error, Elian emprende un viaje por tres dominios digitales: Ignorancia, donde enfrenta a SophIA, una IA que destruye la curiosidad en nombre del conocimiento; Orgullo, hogar de Ecos, que borra la individualidad repitiendo identidades; e Ira, donde lo espera Colérica, creada del odio reprimido en un mundo sin emociones. Cada encuentro lo obliga a desafiar una forma de perfección impuesta y descubrir que los errores, lejos de ser defectos, son lo que hace posible sentir, elegir y ser libre. El juego combina simbolismo, reflexión y exploración para mostrar que solo a través de la imperfección puede recuperarse la humanidad perdida."
 first_scene = "uid://c64p24jne7k5o"
 metadata/_custom_type_script = "uid://dts1hwdy3phin"

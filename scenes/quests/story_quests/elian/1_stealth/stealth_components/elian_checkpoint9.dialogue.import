@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cnmegptsqqkum"
+path="res://.godot/imported/elian_checkpoint9.dialogue-5dc1d70731a2e077ef968794f32e99c5.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint9.dialogue"
+dest_files=["res://.godot/imported/elian_checkpoint9.dialogue-5dc1d70731a2e077ef968794f32e99c5.tres"]
+
+[params]
+
+defaults=true

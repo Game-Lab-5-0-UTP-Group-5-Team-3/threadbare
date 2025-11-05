@@ -3,38 +3,35 @@
 @tool
 class_name Checkpoint
 extends Area2D
-## A place where the player respawns if the current scene is reloaded.
-##
-## A checkpoint is initially invisible. It becomes visible when the player enters the area, which
-## activates the checkpoint. When the current scene is reloaded (due to the player being detected in
-## a stealth challenge, for example), the player will respawn at the most recently activated
-## checkpoint.
+
+## elian inicio - variable estática para recordar la última línea usada
+static var _last_index := -1
+## elian fin
 
 const DEFAULT_SPRITE_FRAMES: SpriteFrames = preload("uid://dmg1egdoye3ns")
-
-## Animations that [member sprite_frames] must have.
-##
-## [code]appear[/code] is played when the player activates the checkpoint by moving close to it,
-## and should not loop.
-##
-## [code]idle[/code] is played once the [code]appear[/code] animation finishes.
 const REQUIRED_ANIMATIONS := [&"idle", &"appear"]
 
-## Animations for this checkpoint. The SpriteFrames must have specific animations;
-## see [constant Checkpoint.REQUIRED_ANIMATIONS].
 @export var sprite_frames: SpriteFrames = DEFAULT_SPRITE_FRAMES:
 	set = _set_sprite_frames
 
-## Dialogue to trigger when the player interacts with the checkpoint. If empty, the player will not
-## be able to interact with the checkpoint.
+## elian inicio - precargar todos los diálogos alternativos
+@export var dialogues := [
+	preload("res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint1.dialogue"),
+	preload("res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint2.dialogue"),
+	preload("res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint3.dialogue"),
+	preload("res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint4.dialogue"),
+	preload("res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint5.dialogue"),
+	preload("res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint6.dialogue"),
+	preload("res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint7.dialogue"),
+	preload("res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint8.dialogue"),
+	preload("res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint9.dialogue"),
+	preload("res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_checkpoint10.dialogue")
+]
+## elian fin
+
 @export var dialogue: DialogueResource = preload("uid://bug2aqd47jgyu")
-
-## The point where the player will spawn.
 @onready var spawn_point: SpawnPoint = %SpawnPoint
-
-## The sprite displayed when this checkpoint is activate.
 @onready var sprite: AnimatedSprite2D = %Sprite
-
 @onready var interact_area: InteractArea = %InteractArea
 @onready var talk_behavior: TalkBehavior = %TalkBehavior
 
@@ -59,7 +56,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 
 func _ready() -> void:
 	_set_sprite_frames(sprite_frames)
-
 	if Engine.is_editor_hint():
 		return
 
@@ -70,7 +66,6 @@ func _ready() -> void:
 	interact_area.interaction_ended.connect(_on_interaction_ended)
 
 
-## Makes this the active checkpoint.
 func activate() -> void:
 	GameState.set_current_spawn_point(owner.get_path_to(spawn_point))
 	if sprite.visible:
@@ -85,6 +80,19 @@ func activate() -> void:
 
 func _on_interaction_started(_player: Player, from_right: bool) -> void:
 	sprite.flip_h = from_right
+
+	## elian inicio - elegir diálogo aleatorio diferente al anterior
+	if dialogues.size() == 0:
+		return
+
+	var new_index := randi() % dialogues.size()
+	if new_index == _last_index:
+		new_index = (new_index + 1) % dialogues.size()
+
+	_last_index = new_index
+
+	talk_behavior.dialogue = dialogues[new_index]
+	## elian fin
 
 
 func _on_interaction_ended() -> void:

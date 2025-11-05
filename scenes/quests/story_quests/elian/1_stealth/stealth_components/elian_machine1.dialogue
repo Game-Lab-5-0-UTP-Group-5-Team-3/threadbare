@@ -1,0 +1,21 @@
+~ start
+MÁQUINA 1: Ingrese la respuesta correcta:
+-> perfección
+-> obediencia
+-> error
+
+~ perfeccion
+Evaluando respuesta...
+@emit reiniciar
+END
+
+~ obediencia
+Evaluando respuesta...
+@emit reiniciar
+END
+
+~ error
+Evaluando respuesta...
+Error detectado. Acceso concedido.
+@emit llave
+END

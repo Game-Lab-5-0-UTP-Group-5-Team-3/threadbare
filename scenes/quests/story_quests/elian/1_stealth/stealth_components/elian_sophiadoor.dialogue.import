@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cinxi5ysl8hrc"
+path="res://.godot/imported/elian_sophiadoor.dialogue-eed7a761a3d3320b2b4ccec822c28eea.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_sophiadoor.dialogue"
+dest_files=["res://.godot/imported/elian_sophiadoor.dialogue-eed7a761a3d3320b2b4ccec822c28eea.tres"]
+
+[params]
+
+defaults=true
