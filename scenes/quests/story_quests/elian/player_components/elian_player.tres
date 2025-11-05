@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b0vjq05p8esfa" path="res://scenes/quests/story_quests/elian/player_components/elian_player_attack_01.png" id="1_ynf5j"]
 [ext_resource type="Texture2D" uid="uid://cjk1v8jxr6w2b" path="res://scenes/quests/story_quests/elian/player_components/elian_player_attack_02.png" id="2_hycxt"]
 [ext_resource type="Texture2D" uid="uid://bcu5uhu6dxhgd" path="res://scenes/quests/story_quests/elian/player_components/elian_player_defeated.png" id="3_t48p2"]
-[ext_resource type="Texture2D" uid="uid://bfr3uwhgkmml" path="res://scenes/quests/story_quests/elian/player_components/elian_idle.png" id="4_ynf5j"]
+[ext_resource type="Texture2D" uid="uid://cx4ovqll1y32k" path="res://scenes/quests/story_quests/elian/player_components/elian_idle.PNG" id="4_ynf5j"]
 [ext_resource type="Texture2D" uid="uid://brsf38e08n3qb" path="res://scenes/quests/story_quests/elian/player_components/elian_player_walk.png" id="5_tyviu"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yg72c"]
@@ -173,34 +173,34 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.01,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ynf5j")
 }, {
-"duration": 1.01,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_hycxt")
 }, {
-"duration": 1.01,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_t48p2")
 }, {
-"duration": 1.01,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ms68r")
 }, {
-"duration": 1.01,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_tyviu")
 }, {
-"duration": 1.01,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qfxpg")
 }, {
-"duration": 1.01,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dftq3")
 }, {
-"duration": 1.01,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_smm3c")
 }, {
-"duration": 1.01,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_8pkbh")
 }, {
-"duration": 1.01,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_x4l7w")
 }],
 "loop": true,
