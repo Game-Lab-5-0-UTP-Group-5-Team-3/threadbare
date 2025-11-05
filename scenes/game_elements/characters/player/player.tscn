@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://b0dehcnfo68j1" path="res://scenes/game_elements/props/hook_control/hook_control.tscn" id="13_ecbbk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_je7p5"]
-size = Vector2(32, 47)
+size = Vector2(59, 79)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j0tly"]
 blend_mode = 1
@@ -515,7 +515,7 @@ collision_layer = 64
 collision_mask = 256
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(0, -28.5)
+position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_je7p5")
 debug_color = Color(0.94902, 0.231373, 0, 0.419608)
 
@@ -534,7 +534,8 @@ script = ExtResource("3_j0tly")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -17)
+position = Vector2(9.536743e-07, -17)
+scale = Vector2(1.296875, 1.234375)
 sprite_frames = ExtResource("2_blfj0")
 animation = &"idle"
 autoplay = "idle"
