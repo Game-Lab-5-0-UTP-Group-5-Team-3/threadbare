@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dti7nf3m71yrq"
+path="res://.godot/imported/machine_boss_idle.dialogue-99dd1fe2cc88800950c4013743c8a758.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/machine_boss_idle.dialogue"
+dest_files=["res://.godot/imported/machine_boss_idle.dialogue-99dd1fe2cc88800950c4013743c8a758.tres"]
+
+[params]
+
+defaults=true

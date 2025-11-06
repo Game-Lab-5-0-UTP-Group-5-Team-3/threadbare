@@ -22,8 +22,7 @@ func _on_key_picked(key_id: String):
 		door._open_door()
 
 func _on_door_tried():
-	if collected.size() < 2:
-		hud.show_message("Aún no tienes las 2 llaves.")
+	pass
 
 
 func _on_door_tried_to_open() -> void:

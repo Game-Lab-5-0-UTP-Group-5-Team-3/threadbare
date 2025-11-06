@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=4 uid="uid://chw4t5xa5r7aa"]
+[gd_scene load_steps=59 format=4 uid="uid://chw4t5xa5r7aa"]
 
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_laed2"]
 [ext_resource type="TileSet" uid="uid://d30304ne3bph" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/tileselaberinto.tres" id="2_mjdok"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://dlbwolmgakaqq" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/key.gd" id="15_wudb4"]
 [ext_resource type="Texture2D" uid="uid://bwycwmhn0d3oe" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/estructuras(decoracion)/puertagrande1.png" id="16_mjdok"]
 [ext_resource type="Script" uid="uid://dkw2htyyyp415" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/door.gd" id="17_rcsnj"]
+[ext_resource type="AudioStream" uid="uid://1gnb8sf687eo" path="res://assets/first_party/sounds/mushroom/Hu.ogg" id="18_ss3r4"]
 [ext_resource type="Resource" uid="uid://d3olg2woausdw" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/door.dialogue" id="19_7laax"]
 [ext_resource type="Script" uid="uid://rk7ys26uo4u8" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/key_system.gd" id="19_vhan8"]
 [ext_resource type="Script" uid="uid://du8wfijr35r35" path="res://scenes/game_elements/props/interact_area/components/interact_area.gd" id="20_7d2ll"]
@@ -36,6 +37,13 @@
 [ext_resource type="Texture2D" uid="uid://djdowt1ds65nv" path="res://assets/third_party/tiny-swords/Factions/Knights/Buildings/Tower/Tower_Red.png" id="33_dnv8d"]
 [ext_resource type="Texture2D" uid="uid://c1y613is5lkgs" path="res://assets/third_party/tiny-swords/Factions/Knights/Buildings/Tower/Tower_Blue.png" id="34_pp7iq"]
 [ext_resource type="Texture2D" uid="uid://cdm8dk8h6f01s" path="res://assets/third_party/tiny-swords/Factions/Knights/Buildings/Tower/Tower_Purple.png" id="35_koeoh"]
+[ext_resource type="Script" uid="uid://bp2kf3lw06y2v" path="res://scenes/quests/story_quests/elian/1_stealth/machine_boss.gd" id="36_pp7iq"]
+[ext_resource type="Resource" uid="uid://bmx8nolxeqpq1" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/machine4.dialogue" id="37_3f5wb"]
+[ext_resource type="Texture2D" uid="uid://ck6rhhyxj2ptw" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/mapa3/angel4.png" id="37_koeoh"]
+[ext_resource type="Resource" uid="uid://lcuyyc4ohea7" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/machine5.dialogue" id="38_1mhwq"]
+[ext_resource type="Resource" uid="uid://duifbapahj135" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/machine6.dialogue" id="39_uwax4"]
+[ext_resource type="Resource" uid="uid://dti7nf3m71yrq" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/machine_boss_idle.dialogue" id="40_1mhwq"]
+[ext_resource type="Resource" uid="uid://bb5giuvmtcm82" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sophia.dialogue" id="42_uwax4"]
 
 [sub_resource type="Curve2D" id="Curve2D_bjv46"]
 _data = {
@@ -85,6 +93,9 @@ radius = 62.03225
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cc6hx"]
 radius = 63.56886
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_koeoh"]
+radius = 63.90618
 
 [node name="StealthTemplateLevel" type="Node2D"]
 y_sort_enabled = true
@@ -205,7 +216,7 @@ debug_color = Color(0, 0, 0, 0.42)
 [node name="HUD" parent="." instance=ExtResource("9_3pchq")]
 
 [node name="CollectibleItem" parent="." instance=ExtResource("10_7laax")]
-position = Vector2(3330, 310)
+position = Vector2(3006, 243)
 next_scene = "uid://djwn808ajkq0n"
 item = SubResource("Resource_cxldm")
 collected_dialogue = ExtResource("12_4jcdn")
@@ -249,7 +260,12 @@ position = Vector2(456, 2492)
 shape = SubResource("CircleShape2D_mjdok")
 disabled = true
 
+[node name="PickupSound" type="AudioStreamPlayer" parent="Interactables/Keys/Key1"]
+stream = ExtResource("18_ss3r4")
+
 [node name="Key2" type="Area2D" parent="Interactables/Keys" groups=["keys"]]
+visible = false
+position = Vector2(-1523, -21)
 script = ExtResource("15_wudb4")
 key_id = "key_2"
 
@@ -260,6 +276,9 @@ texture = ExtResource("15_muj4l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Keys/Key2"]
 position = Vector2(3362, 840)
 shape = SubResource("CircleShape2D_wudb4")
+
+[node name="PickupSound" type="AudioStreamPlayer" parent="Interactables/Keys/Key2"]
+stream = ExtResource("18_ss3r4")
 
 [node name="Door" type="StaticBody2D" parent="Interactables"]
 script = ExtResource("17_rcsnj")
@@ -397,6 +416,7 @@ texture = ExtResource("33_dnv8d")
 [node name="InteractArea" type="Area2D" parent="Interactables/Machines/Machine1"]
 collision_layer = 32
 script = ExtResource("20_7d2ll")
+action = "Perfección"
 metadata/_custom_type_script = "uid://du8wfijr35r35"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Machines/Machine1/InteractArea"]
@@ -423,6 +443,7 @@ texture = ExtResource("34_pp7iq")
 [node name="InteractArea" type="Area2D" parent="Interactables/Machines/Machine2"]
 collision_layer = 32
 script = ExtResource("20_7d2ll")
+action = "Obediencia"
 metadata/_custom_type_script = "uid://du8wfijr35r35"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Machines/Machine2/InteractArea"]
@@ -449,6 +470,7 @@ texture = ExtResource("35_koeoh")
 [node name="InteractArea" type="Area2D" parent="Interactables/Machines/Machine3"]
 collision_layer = 33
 script = ExtResource("20_7d2ll")
+action = "Error"
 metadata/_custom_type_script = "uid://du8wfijr35r35"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Machines/Machine3/InteractArea"]
@@ -457,6 +479,108 @@ shape = SubResource("CircleShape2D_cc6hx")
 
 [node name="TalkBehavior" type="Node" parent="Interactables/Machines/Machine3" node_paths=PackedStringArray("interact_area")]
 script = ExtResource("21_3pchq")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="Machine4" type="Node2D" parent="Interactables/Machines"]
+position = Vector2(2098, 467)
+script = ExtResource("36_pp7iq")
+dialogue_machine4 = ExtResource("37_3f5wb")
+dialogue_machine5 = ExtResource("38_1mhwq")
+dialogue_machine6 = ExtResource("39_uwax4")
+dialogue_idle = ExtResource("40_1mhwq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Machines/Machine4"]
+texture = ExtResource("35_koeoh")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Machines/Machine4"]
+collision_layer = 33
+script = ExtResource("20_7d2ll")
+action = "Correción"
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Machines/Machine4/InteractArea"]
+position = Vector2(0, -28)
+shape = SubResource("CircleShape2D_cc6hx")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Machines/Machine4" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="Machine5" type="Node2D" parent="Interactables/Machines"]
+position = Vector2(2470, 453)
+script = ExtResource("36_pp7iq")
+machine_id = 5
+dialogue_machine4 = ExtResource("37_3f5wb")
+dialogue_machine5 = ExtResource("38_1mhwq")
+dialogue_machine6 = ExtResource("39_uwax4")
+dialogue_idle = ExtResource("40_1mhwq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Machines/Machine5"]
+texture = ExtResource("35_koeoh")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Machines/Machine5"]
+collision_layer = 33
+script = ExtResource("20_7d2ll")
+action = "Apagar Sistema"
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Machines/Machine5/InteractArea"]
+position = Vector2(0, -28)
+shape = SubResource("CircleShape2D_cc6hx")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Machines/Machine5" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="Machine6" type="Node2D" parent="Interactables/Machines"]
+position = Vector2(2727, 453)
+script = ExtResource("36_pp7iq")
+machine_id = 6
+dialogue_machine4 = ExtResource("37_3f5wb")
+dialogue_machine5 = ExtResource("38_1mhwq")
+dialogue_machine6 = ExtResource("39_uwax4")
+dialogue_idle = ExtResource("40_1mhwq")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Machines/Machine6"]
+texture = ExtResource("35_koeoh")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Machines/Machine6"]
+collision_layer = 33
+script = ExtResource("20_7d2ll")
+action = "Inyectar Error"
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Machines/Machine6/InteractArea"]
+position = Vector2(0, -28)
+shape = SubResource("CircleShape2D_cc6hx")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Machines/Machine6" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="Boss" type="Node2D" parent="Interactables"]
+position = Vector2(2400, 208)
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Boss"]
+texture = ExtResource("37_koeoh")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Boss"]
+collision_layer = 32
+script = ExtResource("20_7d2ll")
+action = "SophIA"
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Boss/InteractArea"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_koeoh")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Boss" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
+dialogue = ExtResource("42_uwax4")
 interact_area = NodePath("../InteractArea")
 metadata/_custom_type_script = "uid://edcifob4jc4s"
 
