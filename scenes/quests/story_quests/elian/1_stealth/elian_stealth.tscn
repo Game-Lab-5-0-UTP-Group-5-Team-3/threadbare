@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=4 uid="uid://chw4t5xa5r7aa"]
+[gd_scene load_steps=50 format=4 uid="uid://chw4t5xa5r7aa"]
 
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_laed2"]
 [ext_resource type="TileSet" uid="uid://d30304ne3bph" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/tileselaberinto.tres" id="2_mjdok"]
@@ -28,6 +28,14 @@
 [ext_resource type="Resource" uid="uid://bw3hudo166a7p" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sign2.dialogue" id="25_bjv46"]
 [ext_resource type="Resource" uid="uid://cwgg67rt35ek8" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sign3.dialogue" id="26_tgemy"]
 [ext_resource type="Resource" uid="uid://dx4u34wiulxae" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sign4.dialogue" id="27_ubl2b"]
+[ext_resource type="Script" uid="uid://dg567ewex6jpo" path="res://scenes/quests/story_quests/elian/1_stealth/machine.gd" id="28_tgemy"]
+[ext_resource type="Resource" uid="uid://vdbvkux7tv8d" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/machine1.dialogue" id="29_us74o"]
+[ext_resource type="Resource" uid="uid://bcx4pdk6hmvtm" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/machine2.dialogue" id="30_t405s"]
+[ext_resource type="Resource" uid="uid://dgp61wwfdn710" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/machine3.dialogue" id="31_cc6hx"]
+[ext_resource type="Resource" uid="uid://cuustpti5okev" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/machine_idle.dialogue" id="32_dnv8d"]
+[ext_resource type="Texture2D" uid="uid://djdowt1ds65nv" path="res://assets/third_party/tiny-swords/Factions/Knights/Buildings/Tower/Tower_Red.png" id="33_dnv8d"]
+[ext_resource type="Texture2D" uid="uid://c1y613is5lkgs" path="res://assets/third_party/tiny-swords/Factions/Knights/Buildings/Tower/Tower_Blue.png" id="34_pp7iq"]
+[ext_resource type="Texture2D" uid="uid://cdm8dk8h6f01s" path="res://assets/third_party/tiny-swords/Factions/Knights/Buildings/Tower/Tower_Purple.png" id="35_koeoh"]
 
 [sub_resource type="Curve2D" id="Curve2D_bjv46"]
 _data = {
@@ -68,6 +76,15 @@ size = Vector2(76.6875, 46.703125)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4jcdn"]
 radius = 70.724815
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_us74o"]
+radius = 60.876926
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t405s"]
+radius = 62.03225
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cc6hx"]
+radius = 63.56886
 
 [node name="StealthTemplateLevel" type="Node2D"]
 y_sort_enabled = true
@@ -122,7 +139,6 @@ editor_draw_limits = true
 y_sort_enabled = true
 
 [node name="Guardian1Estatua" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
-visible = false
 position = Vector2(357.44757, 50.426193)
 collision_mask = 512
 safe_margin = 0.001
@@ -142,7 +158,7 @@ scale = Vector2(0.022390904, 1.4058644)
 curve = SubResource("Curve2D_bjv46")
 
 [node name="centinela" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
-position = Vector2(1218.2303, 2341.1174)
+position = Vector2(1581, 1796)
 scale = Vector2(2.25, 2.25)
 collision_mask = 512
 safe_margin = 0.001
@@ -153,7 +169,7 @@ time_to_detect_player = 1.5
 detection_area_scale = 0.9
 
 [node name="centinela-PatrolPath" type="Path2D" parent="EnemyGuards"]
-position = Vector2(1218.2303, 2341.1174)
+position = Vector2(1581, 1796)
 curve = SubResource("Curve2D_tgemy")
 
 [node name="centinela2" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
@@ -220,6 +236,8 @@ offset_bottom = 23.0
 [node name="Keys" type="Node" parent="Interactables"]
 
 [node name="Key1" type="Area2D" parent="Interactables/Keys" groups=["keys"]]
+visible = false
+position = Vector2(81, -100)
 script = ExtResource("15_wudb4")
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactables/Keys/Key1"]
@@ -229,6 +247,7 @@ texture = ExtResource("15_muj4l")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Keys/Key1"]
 position = Vector2(456, 2492)
 shape = SubResource("CircleShape2D_mjdok")
+disabled = true
 
 [node name="Key2" type="Area2D" parent="Interactables/Keys" groups=["keys"]]
 script = ExtResource("15_wudb4")
@@ -271,7 +290,7 @@ interact_area = NodePath("../InteractArea")
 metadata/_custom_type_script = "uid://edcifob4jc4s"
 
 [node name="Sign1" type="Node2D" parent="Interactables"]
-position = Vector2(3330, 2415)
+position = Vector2(2712, 2394)
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactables/Sign1"]
 position = Vector2(-134, 22)
@@ -359,6 +378,85 @@ shape = SubResource("CircleShape2D_4jcdn")
 [node name="TalkBehavior" type="Node" parent="Interactables/Sign4" node_paths=PackedStringArray("interact_area")]
 script = ExtResource("21_3pchq")
 dialogue = ExtResource("27_ubl2b")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="Machines" type="Node" parent="Interactables"]
+
+[node name="Machine1" type="Node2D" parent="Interactables/Machines"]
+position = Vector2(783, 2723)
+script = ExtResource("28_tgemy")
+dialogue_machine1 = ExtResource("29_us74o")
+dialogue_machine2 = ExtResource("30_t405s")
+dialogue_machine3 = ExtResource("31_cc6hx")
+dialogue_idle = ExtResource("32_dnv8d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Machines/Machine1"]
+texture = ExtResource("33_dnv8d")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Machines/Machine1"]
+collision_layer = 32
+script = ExtResource("20_7d2ll")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Machines/Machine1/InteractArea"]
+position = Vector2(1, -28)
+shape = SubResource("CircleShape2D_us74o")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Machines/Machine1" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="Machine2" type="Node2D" parent="Interactables/Machines"]
+position = Vector2(490, 2728)
+script = ExtResource("28_tgemy")
+machine_id = 2
+dialogue_machine1 = ExtResource("29_us74o")
+dialogue_machine2 = ExtResource("30_t405s")
+dialogue_machine3 = ExtResource("31_cc6hx")
+dialogue_idle = ExtResource("32_dnv8d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Machines/Machine2"]
+texture = ExtResource("34_pp7iq")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Machines/Machine2"]
+collision_layer = 32
+script = ExtResource("20_7d2ll")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Machines/Machine2/InteractArea"]
+position = Vector2(1, -20)
+shape = SubResource("CircleShape2D_t405s")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Machines/Machine2" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="Machine3" type="Node2D" parent="Interactables/Machines"]
+position = Vector2(202, 2732)
+script = ExtResource("28_tgemy")
+machine_id = 3
+dialogue_machine1 = ExtResource("29_us74o")
+dialogue_machine2 = ExtResource("30_t405s")
+dialogue_machine3 = ExtResource("31_cc6hx")
+dialogue_idle = ExtResource("32_dnv8d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Machines/Machine3"]
+texture = ExtResource("35_koeoh")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Machines/Machine3"]
+collision_layer = 33
+script = ExtResource("20_7d2ll")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Machines/Machine3/InteractArea"]
+position = Vector2(0, -28)
+shape = SubResource("CircleShape2D_cc6hx")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Machines/Machine3" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("21_3pchq")
 interact_area = NodePath("../InteractArea")
 metadata/_custom_type_script = "uid://edcifob4jc4s"
 
