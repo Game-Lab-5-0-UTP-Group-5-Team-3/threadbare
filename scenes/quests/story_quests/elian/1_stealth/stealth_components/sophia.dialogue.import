@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bb5giuvmtcm82"
+path="res://.godot/imported/sophia.dialogue-aebcfcc881f131214c9fc131c5ad8f81.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sophia.dialogue"
+dest_files=["res://.godot/imported/sophia.dialogue-aebcfcc881f131214c9fc131c5ad8f81.tres"]
+
+[params]
+
+defaults=true
