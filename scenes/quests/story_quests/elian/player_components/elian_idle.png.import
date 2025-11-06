@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cx4ovqll1y32k"
-path="res://.godot/imported/elian_idle.PNG-7a34a5f66cf61b3012a562bcfe017ede.ctex"
+path="res://.godot/imported/elian_idle.png-4730fd369edb5e934181928443d3d05f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/quests/story_quests/elian/player_components/elian_idle.PNG"
-dest_files=["res://.godot/imported/elian_idle.PNG-7a34a5f66cf61b3012a562bcfe017ede.ctex"]
+source_file="res://scenes/quests/story_quests/elian/player_components/elian_idle.png"
+dest_files=["res://.godot/imported/elian_idle.png-4730fd369edb5e934181928443d3d05f.ctex"]
 
 [params]
 

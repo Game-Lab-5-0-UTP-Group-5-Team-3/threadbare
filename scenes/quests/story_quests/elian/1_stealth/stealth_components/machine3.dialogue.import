@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dgp61wwfdn710"
+path="res://.godot/imported/machine3.dialogue-86ea5053e7d9487f90d77470e606f30f.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/machine3.dialogue"
+dest_files=["res://.godot/imported/machine3.dialogue-86ea5053e7d9487f90d77470e606f30f.tres"]
+
+[params]
+
+defaults=true

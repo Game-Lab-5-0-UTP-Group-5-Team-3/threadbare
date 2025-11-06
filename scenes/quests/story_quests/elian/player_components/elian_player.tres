@@ -1,7 +1,7 @@
 [gd_resource type="SpriteFrames" load_steps=26 format=3 uid="uid://conwqdkmqsys3"]
 
 [ext_resource type="Texture2D" uid="uid://bojw0ia2u7j8f" path="res://scenes/quests/story_quests/elian/player_components/elian_anima.png" id="1_wy5ua"]
-[ext_resource type="Texture2D" uid="uid://cx4ovqll1y32k" path="res://scenes/quests/story_quests/elian/player_components/elian_idle.PNG" id="4_ynf5j"]
+[ext_resource type="Texture2D" uid="uid://cx4ovqll1y32k" path="res://scenes/quests/story_quests/elian/player_components/elian_idle.png" id="4_ynf5j"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dc0hn"]
 atlas = ExtResource("1_wy5ua")

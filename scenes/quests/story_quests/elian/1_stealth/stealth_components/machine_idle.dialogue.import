@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cuustpti5okev"
+path="res://.godot/imported/machine_idle.dialogue-8234cfd49ffa9e6ca20698dc868760a5.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/machine_idle.dialogue"
+dest_files=["res://.godot/imported/machine_idle.dialogue-8234cfd49ffa9e6ca20698dc868760a5.tres"]
+
+[params]
+
+defaults=true
