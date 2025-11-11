@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://o7o0cmlybwko"]
+[gd_scene load_steps=35 format=4 uid="uid://o7o0cmlybwko"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_iro0j"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="2_20nt6"]
@@ -22,11 +22,28 @@
 [ext_resource type="PackedScene" uid="uid://covsdqqsd6rsy" path="res://scenes/game_elements/props/sign/sign.tscn" id="20_coke0"]
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="21_itfvh"]
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="22_yva76"]
+[ext_resource type="Texture2D" uid="uid://b8yn4tog2cnaw" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/estructuras(decoracion)/llave 1.png" id="23_t54xw"]
+[ext_resource type="Script" uid="uid://cghtcr8688vp4" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/key_item.gd" id="23_tlsqf"]
+[ext_resource type="Texture2D" uid="uid://boeaxk35yjpwl" path="res://scenes/game_elements/props/door/components/door_closed.png" id="24_7jdtm"]
+[ext_resource type="Script" uid="uid://du8wfijr35r35" path="res://scenes/game_elements/props/interact_area/components/interact_area.gd" id="25_6asd0"]
+[ext_resource type="Script" uid="uid://ciibij556mscc" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/door.gd" id="25_7f16m"]
+[ext_resource type="Script" uid="uid://edcifob4jc4s" path="res://scenes/game_logic/talk_behavior.gd" id="26_6asd0"]
+[ext_resource type="Script" uid="uid://cq8gxcsusdrdv" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/key_system.gd" id="27_tlsqf"]
+[ext_resource type="Script" uid="uid://ccbrpqcogcdwk" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/keys_hud.gd" id="30_6caan"]
 
 [sub_resource type="Resource" id="Resource_wop6j"]
 script = ExtResource("18_mp2c4")
 type = 2
 metadata/_custom_type_script = "uid://bgmwplmj3bfls"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tlsqf"]
+radius = 28.284271
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7f16m"]
+size = Vector2(65, 81)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6caan"]
+size = Vector2(64.5, 84.5)
 
 [node name="SequencePuzzleTemplate" type="Node2D"]
 
@@ -59,36 +76,73 @@ position = Vector2(356, 453)
 
 [node name="Blue" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
 modulate = Color(0, 0.4, 0.6, 1)
+position = Vector2(306, -250)
+sprite_frames = ExtResource("6_6asd0")
+audio_stream = ExtResource("7_tlsqf")
+
+[node name="Sub1_Blue" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
+modulate = Color(0, 0.4, 0.6, 1)
+position = Vector2(-66, 87)
+sprite_frames = ExtResource("6_6asd0")
+audio_stream = ExtResource("7_tlsqf")
+
+[node name="Sub2_Blue" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
+modulate = Color(0, 0.4, 0.6, 1)
+position = Vector2(-56, -266)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("7_tlsqf")
 
 [node name="Pink" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
 modulate = Color(0.89, 0.2937, 0.804817, 1)
-position = Vector2(80, -8)
+position = Vector2(384, -197)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("8_7f16m")
 
 [node name="Yellow" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
 modulate = Color(0.89, 0.804817, 0.2937, 1)
-position = Vector2(160, -16)
+position = Vector2(459, -148)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("9_6caan")
 
 [node name="Green" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
 modulate = Color(0.188235, 0.717647, 0, 1)
-position = Vector2(240, -24)
+position = Vector2(536, -97)
+sprite_frames = ExtResource("6_6asd0")
+audio_stream = ExtResource("10_vul14")
+
+[node name="Sub1_Green" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
+modulate = Color(0.188235, 0.717647, 0, 1)
+position = Vector2(15, 84)
+sprite_frames = ExtResource("6_6asd0")
+audio_stream = ExtResource("10_vul14")
+
+[node name="Sub2_Green" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
+modulate = Color(0.188235, 0.717647, 0, 1)
+position = Vector2(23, -265)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("10_vul14")
 
 [node name="Purple" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
 modulate = Color(0.464066, 0.2937, 0.89, 1)
-position = Vector2(320, -32)
+position = Vector2(535, 37)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("11_kbbsn")
 
 [node name="Red" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
 modulate = Color(0.89, 0.2937, 0.2937, 1)
-position = Vector2(400, -40)
+position = Vector2(410, 14)
+sprite_frames = ExtResource("6_6asd0")
+audio_stream = ExtResource("12_qx0gp")
+
+[node name="Sub1_Red" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
+modulate = Color(0.89, 0.2937, 0.2937, 1)
+position = Vector2(91, 86)
+sprite_frames = ExtResource("6_6asd0")
+audio_stream = ExtResource("12_qx0gp")
+
+[node name="Sub2_Red" parent="OnTheGround/SequencePuzzle/Objects" instance=ExtResource("5_7jdtm")]
+modulate = Color(0.89, 0.2937, 0.2937, 1)
+position = Vector2(99, -260)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("12_qx0gp")
 
@@ -96,14 +150,50 @@ audio_stream = ExtResource("12_qx0gp")
 y_sort_enabled = true
 
 [node name="HintSign1" parent="OnTheGround/SequencePuzzle/Signs" instance=ExtResource("13_0f0vj")]
-position = Vector2(506, 210)
+position = Vector2(837, 221)
+sprite_frames = ExtResource("14_y538q")
+
+[node name="Sub2_HintSign1" parent="OnTheGround/SequencePuzzle/Signs" instance=ExtResource("13_0f0vj")]
+position = Vector2(350, 96)
+sprite_frames = ExtResource("14_y538q")
+
+[node name="Sub1_HintSign1" parent="OnTheGround/SequencePuzzle/Signs" instance=ExtResource("13_0f0vj")]
+position = Vector2(335, 452)
 sprite_frames = ExtResource("14_y538q")
 
 [node name="HintSign2" parent="OnTheGround/SequencePuzzle/Signs" instance=ExtResource("13_0f0vj")]
-position = Vector2(593, 200)
+position = Vector2(950, 221)
+sprite_frames = ExtResource("15_imkop")
+
+[node name="Sub2_HintSign2" parent="OnTheGround/SequencePuzzle/Signs" instance=ExtResource("13_0f0vj")]
+position = Vector2(454, 98)
+sprite_frames = ExtResource("15_imkop")
+
+[node name="Sub1_HintSign2" parent="OnTheGround/SequencePuzzle/Signs" instance=ExtResource("13_0f0vj")]
+position = Vector2(427, 453)
 sprite_frames = ExtResource("15_imkop")
 
 [node name="Steps" type="Node2D" parent="OnTheGround/SequencePuzzle"]
+
+[node name="Sub1_SequencePuzzleStep1" type="Node2D" parent="OnTheGround/SequencePuzzle/Steps" node_paths=PackedStringArray("sequence", "hint_sign")]
+script = ExtResource("16_e1cf0")
+sequence = [NodePath("../../Objects/Sub1_Blue"), NodePath("../../Objects/Sub1_Green"), NodePath("../../Objects/Sub1_Red")]
+hint_sign = NodePath("../../Signs/Sub1_HintSign1")
+
+[node name="Sub1_SequencePuzzleStep2" type="Node2D" parent="OnTheGround/SequencePuzzle/Steps" node_paths=PackedStringArray("sequence", "hint_sign")]
+script = ExtResource("16_e1cf0")
+sequence = [NodePath("../../Objects/Sub1_Red"), NodePath("../../Objects/Sub1_Blue"), NodePath("../../Objects/Sub1_Red"), NodePath("../../Objects/Sub1_Green")]
+hint_sign = NodePath("../../Signs/Sub1_HintSign2")
+
+[node name="Sub2_SequencePuzzleStep1" type="Node2D" parent="OnTheGround/SequencePuzzle/Steps" node_paths=PackedStringArray("sequence", "hint_sign")]
+script = ExtResource("16_e1cf0")
+sequence = [NodePath("../../Objects/Sub2_Blue"), NodePath("../../Objects/Sub2_Red"), NodePath("../../Objects/Sub2_Green")]
+hint_sign = NodePath("../../Signs/Sub2_HintSign1")
+
+[node name="Sub2_SequencePuzzleStep2" type="Node2D" parent="OnTheGround/SequencePuzzle/Steps" node_paths=PackedStringArray("sequence", "hint_sign")]
+script = ExtResource("16_e1cf0")
+sequence = [NodePath("../../Objects/Sub2_Blue"), NodePath("../../Objects/Sub2_Green"), NodePath("../../Objects/Sub2_Green"), NodePath("../../Objects/Sub2_Red")]
+hint_sign = NodePath("../../Signs/Sub2_HintSign2")
 
 [node name="SequencePuzzleStep1" type="Node2D" parent="OnTheGround/SequencePuzzle/Steps" node_paths=PackedStringArray("sequence", "hint_sign")]
 script = ExtResource("16_e1cf0")
@@ -116,7 +206,7 @@ sequence = [NodePath("../../Objects/Blue"), NodePath("../../Objects/Green"), Nod
 hint_sign = NodePath("../../Signs/HintSign2")
 
 [node name="CollectibleItem" parent="OnTheGround" instance=ExtResource("17_khisk")]
-position = Vector2(861, 282)
+position = Vector2(852, 120)
 revealed = false
 next_scene = "uid://cdgl7npoa4ego"
 item = SubResource("Resource_wop6j")
@@ -142,4 +232,86 @@ script = ExtResource("22_yva76")
 dialogue = ExtResource("19_tvi5x")
 metadata/_custom_type_script = "uid://x1mxt6bmei2o"
 
+[node name="Interactables" type="Node2D" parent="."]
+
+[node name="Keys" type="Node2D" parent="Interactables"]
+
+[node name="Key1" type="Area2D" parent="Interactables/Keys"]
+script = ExtResource("23_tlsqf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Keys/Key1"]
+texture = ExtResource("23_t54xw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Keys/Key1"]
+shape = SubResource("CircleShape2D_tlsqf")
+
+[node name="PickpSound" type="AudioStreamPlayer2D" parent="Interactables/Keys/Key1"]
+
+[node name="Key2" type="Area2D" parent="Interactables/Keys"]
+position = Vector2(9, 135)
+script = ExtResource("23_tlsqf")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Keys/Key2"]
+texture = ExtResource("23_t54xw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Keys/Key2"]
+shape = SubResource("CircleShape2D_tlsqf")
+
+[node name="PickpSound" type="AudioStreamPlayer2D" parent="Interactables/Keys/Key2"]
+
+[node name="Door" type="StaticBody2D" parent="Interactables"]
+script = ExtResource("25_7f16m")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactables/Door"]
+position = Vector2(166, 34)
+texture = ExtResource("24_7jdtm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Door"]
+position = Vector2(167.5, 31.5)
+shape = SubResource("RectangleShape2D_7f16m")
+
+[node name="InteractArea" type="Area2D" parent="Interactables/Door"]
+position = Vector2(168, 43)
+collision_layer = 32
+script = ExtResource("25_6asd0")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Door/InteractArea"]
+position = Vector2(-1, -10)
+shape = SubResource("RectangleShape2D_6caan")
+
+[node name="TalkBehavior" type="Node" parent="Interactables/Door" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("26_6asd0")
+interact_area = NodePath("../InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="KeySystem" type="Node" parent="."]
+script = ExtResource("27_tlsqf")
+
+[node name="StoryHUDs" type="CanvasLayer" parent="."]
+
+[node name="KeysHUD" type="CanvasLayer" parent="StoryHUDs"]
+script = ExtResource("30_6caan")
+
+[node name="CountLabel" type="Label" parent="StoryHUDs/KeysHUD"]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 24
+
+[node name="MsgLabel" type="Label" parent="StoryHUDs/KeysHUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_top = 48.0
+offset_right = -600.0
+offset_bottom = 71.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
 [connection signal="solved" from="OnTheGround/SequencePuzzle" to="OnTheGround/CollectibleItem" method="reveal"]
+[connection signal="body_entered" from="Interactables/Keys/Key1" to="Interactables/Keys/Key1" method="_on_body_entered"]
+[connection signal="body_entered" from="Interactables/Keys/Key2" to="Interactables/Keys/Key2" method="_on_body_entered"]
