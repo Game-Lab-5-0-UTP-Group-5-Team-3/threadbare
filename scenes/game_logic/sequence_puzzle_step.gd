@@ -29,3 +29,7 @@ func _get_configuration_warnings() -> PackedStringArray:
 		warnings.append("Hint Sign not set")
 
 	return warnings
+
+
+func _on_sub_1_hint_sign_1_demonstrate_sequence() -> void:
+	pass # Replace with function body.

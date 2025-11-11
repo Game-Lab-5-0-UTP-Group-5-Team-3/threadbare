@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://hbddy20ks1pv"
+path="res://.godot/imported/sub1_hint_idle.dialogue-8fd0d5e2c132c94e3003a2894dfa4347.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/3_sequence_puzzle/sub1_hint_idle.dialogue"
+dest_files=["res://.godot/imported/sub1_hint_idle.dialogue-8fd0d5e2c132c94e3003a2894dfa4347.tres"]
+
+[params]
+
+defaults=true
