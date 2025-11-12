@@ -6,7 +6,7 @@ var mode: Mode = Mode.NONE
 # === CONFIGURACIÓN DE SUB1 ===
 @onready var step_bad: SequencePuzzleStep = $"Sub1_SequencePuzzleStep1"
 @onready var step_good: SequencePuzzleStep = $"Sub1_SequencePuzzleStep2"
-@onready var key_system := $"../KeySystem"
+@onready var key_system := $"../../KeySystem"
 @onready var player := get_tree().get_first_node_in_group("player") # 🎮 referencia directa al jugador
 var key_id := "Key1"
 # =====================================================

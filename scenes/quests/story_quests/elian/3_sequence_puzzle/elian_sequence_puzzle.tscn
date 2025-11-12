@@ -650,7 +650,6 @@ size = Vector2(249.90526, 26.720623)
 size = Vector2(252.29282, 29.260632)
 
 [node name="SequencePuzzleTemplate" type="Node2D"]
-position = Vector2(-934, -34)
 
 [node name="TileMapLayers" type="Node2D" parent="."]
 
@@ -797,11 +796,11 @@ metadata/_custom_type_script = "uid://edcifob4jc4s"
 script = ExtResource("21_vul14")
 
 [node name="Sub1_HintSign1" parent="OnTheGround/Sub1Controller" instance=ExtResource("13_0f0vj")]
-position = Vector2(134, 1591)
+position = Vector2(1071, 1642)
 sprite_frames = ExtResource("14_y538q")
 
 [node name="Sub1_HintSign2" parent="OnTheGround/Sub1Controller" instance=ExtResource("13_0f0vj")]
-position = Vector2(126, 1715)
+position = Vector2(1065, 1764)
 sprite_frames = ExtResource("15_imkop")
 
 [node name="Sub1_SequencePuzzleStep1" type="Node2D" parent="OnTheGround/Sub1Controller" node_paths=PackedStringArray("sequence", "hint_sign")]
@@ -818,19 +817,19 @@ hint_sign = NodePath("../Sub1_HintSign2")
 
 [node name="Sub1_Blue" parent="OnTheGround/Sub1Controller" instance=ExtResource("5_7jdtm")]
 modulate = Color(0, 0.4, 0.6, 1)
-position = Vector2(129, 1878)
+position = Vector2(1072, 1904)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("7_tlsqf")
 
 [node name="Sub1_Green" parent="OnTheGround/Sub1Controller" instance=ExtResource("5_7jdtm")]
 modulate = Color(0.188235, 0.717647, 0, 1)
-position = Vector2(255, 1872)
+position = Vector2(1183, 1904)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("10_vul14")
 
 [node name="Sub1_Red" parent="OnTheGround/Sub1Controller" instance=ExtResource("5_7jdtm")]
 modulate = Color(0.89, 0.2937, 0.2937, 1)
-position = Vector2(377, 1874)
+position = Vector2(1294, 1904)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("12_qx0gp")
 
@@ -838,12 +837,12 @@ audio_stream = ExtResource("12_qx0gp")
 script = ExtResource("18_kbbsn")
 
 [node name="Sub2_HintSign1" parent="OnTheGround/Sub2Controller" instance=ExtResource("13_0f0vj")]
-position = Vector2(1939.9999, 1601)
+position = Vector2(2871, 1643)
 scale = Vector2(0.815253, 0.8670333)
 sprite_frames = ExtResource("14_y538q")
 
 [node name="Sub2_HintSign2" parent="OnTheGround/Sub2Controller" instance=ExtResource("13_0f0vj")]
-position = Vector2(1943, 1730)
+position = Vector2(2879, 1762)
 sprite_frames = ExtResource("15_imkop")
 
 [node name="Sub2_SequencePuzzleStep1" type="Node2D" parent="OnTheGround/Sub2Controller" node_paths=PackedStringArray("sequence", "hint_sign")]
@@ -860,19 +859,19 @@ hint_sign = NodePath("../Sub2_HintSign2")
 
 [node name="Sub2_Green" parent="OnTheGround/Sub2Controller" instance=ExtResource("5_7jdtm")]
 modulate = Color(0.188235, 0.717647, 0, 1)
-position = Vector2(1817, 1863)
+position = Vector2(2745, 1911)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("10_vul14")
 
 [node name="Sub2_Blue" parent="OnTheGround/Sub2Controller" instance=ExtResource("5_7jdtm")]
 modulate = Color(0, 0.4, 0.6, 1)
-position = Vector2(1686, 1866)
+position = Vector2(2618, 1913)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("7_tlsqf")
 
 [node name="Sub2_Red" parent="OnTheGround/Sub2Controller" instance=ExtResource("5_7jdtm")]
 modulate = Color(0.89, 0.2937, 0.2937, 1)
-position = Vector2(1931, 1860)
+position = Vector2(2875, 1907)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("12_qx0gp")
 
@@ -907,9 +906,9 @@ metadata/_custom_type_script = "uid://x1mxt6bmei2o"
 [node name="Interactables" type="Node2D" parent="."]
 
 [node name="Keys" type="Node2D" parent="Interactables"]
+visible = false
 
 [node name="Key1" type="Area2D" parent="Interactables/Keys"]
-visible = false
 position = Vector2(1311, 1743)
 script = ExtResource("23_tlsqf")
 
@@ -995,6 +994,8 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="ScreenOverlay" type="CanvasLayer" parent="."]
 
 [connection signal="solved" from="OnTheGround/SequencePuzzle" to="OnTheGround/CollectibleItem" method="reveal"]
 [connection signal="demonstrate_sequence" from="OnTheGround/Sub1Controller/Sub1_HintSign1" to="OnTheGround/Sub1Controller" method="_on_bad_sign_demo"]
