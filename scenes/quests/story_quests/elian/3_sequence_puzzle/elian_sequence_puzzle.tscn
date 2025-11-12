@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://o7o0cmlybwko"]
+[gd_scene load_steps=43 format=4 uid="uid://o7o0cmlybwko"]
 
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="1_iro0j"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="2_20nt6"]
@@ -17,9 +17,13 @@
 [ext_resource type="SpriteFrames" uid="uid://bmvryt0ednp1s" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/elian_sign_2.tres" id="15_imkop"]
 [ext_resource type="Script" uid="uid://ccc78coj2b1li" path="res://scenes/game_logic/sequence_puzzle_step.gd" id="16_e1cf0"]
 [ext_resource type="PackedScene" uid="uid://fuhl3l6gxq5k" path="res://scenes/game_elements/props/collectible_item/collectible_item.tscn" id="17_khisk"]
+[ext_resource type="SpriteFrames" uid="uid://clx8sssi4tw8q" path="res://scenes/game_elements/characters/components/sprite_frames/musician.tres" id="17_qx0gp"]
+[ext_resource type="Script" uid="uid://bgjc4eu7owljb" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/boss_controller.gd" id="17_y538q"]
 [ext_resource type="Script" uid="uid://bwwjldff2g8qh" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/sub_2_controller.gd" id="18_kbbsn"]
 [ext_resource type="Script" uid="uid://bgmwplmj3bfls" path="res://scenes/globals/game_state/inventory/inventory_item.gd" id="18_mp2c4"]
+[ext_resource type="Resource" uid="uid://broydlrh5p5rp" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/boss_phase2.dialogue" id="19_imkop"]
 [ext_resource type="Resource" uid="uid://bj6se73mnjeih" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/elian_sequence_puzzle.dialogue" id="19_tvi5x"]
+[ext_resource type="Resource" uid="uid://hxw440b8jt47" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/boss_idle.dialogue" id="20_0f0vj"]
 [ext_resource type="PackedScene" uid="uid://covsdqqsd6rsy" path="res://scenes/game_elements/props/sign/sign.tscn" id="20_coke0"]
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="21_itfvh"]
 [ext_resource type="Script" uid="uid://dht7bdjypl4s1" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/sub_1_controller.gd" id="21_vul14"]
@@ -32,6 +36,10 @@
 [ext_resource type="Script" uid="uid://edcifob4jc4s" path="res://scenes/game_logic/talk_behavior.gd" id="26_6asd0"]
 [ext_resource type="Script" uid="uid://cq8gxcsusdrdv" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/key_system.gd" id="27_tlsqf"]
 [ext_resource type="Script" uid="uid://ccbrpqcogcdwk" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/keys_hud.gd" id="30_6caan"]
+[ext_resource type="Resource" uid="uid://hbddy20ks1pv" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/door.dialogue" id="35_e1cf0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0f0vj"]
+radius = 54.230988
 
 [sub_resource type="Resource" id="Resource_wop6j"]
 script = ExtResource("18_mp2c4")
@@ -127,23 +135,50 @@ sprite_frames = ExtResource("15_imkop")
 
 [node name="SequencePuzzleStep1" type="Node2D" parent="OnTheGround/SequencePuzzle/Steps" node_paths=PackedStringArray("sequence", "hint_sign")]
 script = ExtResource("16_e1cf0")
-sequence = [NodePath("../../Objects/Yellow"), NodePath("../../Objects/Green"), NodePath("../../Objects/Blue")]
+sequence = [NodePath("../../Objects/Yellow"), NodePath("../../Objects/Green"), NodePath("../../Objects/Blue"), NodePath("../../Objects/Blue")]
 hint_sign = NodePath("../../Signs/HintSign1")
 
 [node name="SequencePuzzleStep2" type="Node2D" parent="OnTheGround/SequencePuzzle/Steps" node_paths=PackedStringArray("sequence", "hint_sign")]
 script = ExtResource("16_e1cf0")
-sequence = [NodePath("../../Objects/Blue"), NodePath("../../Objects/Green"), NodePath("../../Objects/Yellow"), NodePath("../../Objects/Green")]
+sequence = [NodePath("../../Objects/Blue"), NodePath("../../Objects/Green"), NodePath("../../Objects/Yellow"), NodePath("../../Objects/Green"), NodePath("../../Objects/Pink"), NodePath("../../Objects/Red"), NodePath("../../Objects/Blue")]
 hint_sign = NodePath("../../Signs/HintSign2")
+
+[node name="BossController" type="Node2D" parent="OnTheGround/SequencePuzzle"]
+script = ExtResource("17_y538q")
+boss_idle_dialogue = ExtResource("20_0f0vj")
+boss_phase2_dialogue = ExtResource("19_imkop")
+
+[node name="BossNPC" type="Node2D" parent="OnTheGround/SequencePuzzle/BossController"]
+position = Vector2(653, 62)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="OnTheGround/SequencePuzzle/BossController/BossNPC"]
+sprite_frames = ExtResource("17_qx0gp")
+animation = &"idle"
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/SequencePuzzle/BossController/BossNPC/AnimatedSprite2D"]
+collision_layer = 32
+script = ExtResource("25_6asd0")
+metadata/_custom_type_script = "uid://du8wfijr35r35"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/SequencePuzzle/BossController/BossNPC/AnimatedSprite2D/InteractArea"]
+position = Vector2(3, 4)
+shape = SubResource("CircleShape2D_0f0vj")
+
+[node name="TalkBehavior" type="Node" parent="OnTheGround/SequencePuzzle/BossController/BossNPC" node_paths=PackedStringArray("interact_area")]
+script = ExtResource("26_6asd0")
+dialogue = ExtResource("20_0f0vj")
+interact_area = NodePath("../AnimatedSprite2D/InteractArea")
+metadata/_custom_type_script = "uid://edcifob4jc4s"
 
 [node name="Sub1Controller" type="Node" parent="OnTheGround"]
 script = ExtResource("21_vul14")
 
 [node name="Sub1_HintSign1" parent="OnTheGround/Sub1Controller" instance=ExtResource("13_0f0vj")]
-position = Vector2(334, 452)
+position = Vector2(202, 408)
 sprite_frames = ExtResource("14_y538q")
 
 [node name="Sub1_HintSign2" parent="OnTheGround/Sub1Controller" instance=ExtResource("13_0f0vj")]
-position = Vector2(426, 453)
+position = Vector2(300, 412)
 sprite_frames = ExtResource("15_imkop")
 
 [node name="Sub1_SequencePuzzleStep1" type="Node2D" parent="OnTheGround/Sub1Controller" node_paths=PackedStringArray("sequence", "hint_sign")]
@@ -160,19 +195,19 @@ hint_sign = NodePath("../Sub1_HintSign2")
 
 [node name="Sub1_Blue" parent="OnTheGround/Sub1Controller" instance=ExtResource("5_7jdtm")]
 modulate = Color(0, 0.4, 0.6, 1)
-position = Vector2(289, 540)
+position = Vector2(182, 498)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("7_tlsqf")
 
 [node name="Sub1_Green" parent="OnTheGround/Sub1Controller" instance=ExtResource("5_7jdtm")]
 modulate = Color(0.188235, 0.717647, 0, 1)
-position = Vector2(370, 537)
+position = Vector2(257, 503)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("10_vul14")
 
 [node name="Sub1_Red" parent="OnTheGround/Sub1Controller" instance=ExtResource("5_7jdtm")]
 modulate = Color(0.89, 0.2937, 0.2937, 1)
-position = Vector2(446, 539)
+position = Vector2(316, 503)
 sprite_frames = ExtResource("6_6asd0")
 audio_stream = ExtResource("12_qx0gp")
 
@@ -227,7 +262,7 @@ collected_dialogue = ExtResource("19_tvi5x")
 dialogue_title = &"well_done"
 
 [node name="Sign" parent="OnTheGround" instance=ExtResource("20_coke0")]
-position = Vector2(184, 434)
+position = Vector2(26, 556)
 direction = 1
 text = "First melody: yellow, green, blue."
 
@@ -251,7 +286,7 @@ metadata/_custom_type_script = "uid://x1mxt6bmei2o"
 
 [node name="Key1" type="Area2D" parent="Interactables/Keys"]
 visible = false
-position = Vector2(496, 454)
+position = Vector2(423, 435)
 script = ExtResource("23_tlsqf")
 
 [node name="Sprite2D" type="Sprite2D" parent="Interactables/Keys/Key1"]
@@ -278,7 +313,7 @@ disabled = true
 [node name="PickpSound" type="AudioStreamPlayer2D" parent="Interactables/Keys/Key2"]
 
 [node name="Door" type="StaticBody2D" parent="Interactables"]
-position = Vector2(373, 24)
+position = Vector2(379.00003, -73.00001)
 scale = Vector2(1.2564764, 9.842572)
 script = ExtResource("25_7f16m")
 
@@ -302,6 +337,7 @@ shape = SubResource("RectangleShape2D_6caan")
 
 [node name="TalkBehavior" type="Node" parent="Interactables/Door" node_paths=PackedStringArray("interact_area")]
 script = ExtResource("26_6asd0")
+dialogue = ExtResource("35_e1cf0")
 interact_area = NodePath("../InteractArea")
 metadata/_custom_type_script = "uid://edcifob4jc4s"
 

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://hxw440b8jt47"
+path="res://.godot/imported/boss_idle.dialogue-3d50ce946aa66810c985136a0eece093.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/3_sequence_puzzle/boss_idle.dialogue"
+dest_files=["res://.godot/imported/boss_idle.dialogue-3d50ce946aa66810c985136a0eece093.tres"]
+
+[params]
+
+defaults=true

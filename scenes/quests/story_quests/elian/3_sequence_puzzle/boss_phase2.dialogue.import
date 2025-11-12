@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://broydlrh5p5rp"
+path="res://.godot/imported/boss_phase2.dialogue-84edc3881549618a98bbac645e4e11f6.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/3_sequence_puzzle/boss_phase2.dialogue"
+dest_files=["res://.godot/imported/boss_phase2.dialogue-84edc3881549618a98bbac645e4e11f6.tres"]
+
+[params]
+
+defaults=true
