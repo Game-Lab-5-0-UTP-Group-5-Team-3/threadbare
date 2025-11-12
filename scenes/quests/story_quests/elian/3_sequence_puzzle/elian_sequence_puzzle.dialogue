@@ -1,12 +1,15 @@
 # SPDX-FileCopyrightText: The Threadbare Authors
 # SPDX-License-Identifier: MPL-2.0
 ~ start
-This scene includes objects that the player must tap in a particular sequence, and signs with clues on them.
-Select a "SequencePuzzleStep" node and change the array in the "Sequence" field.
-The first melody is set to yellow, green, blue. This means that you should tap those objects in that order.
-Can you guess the second sequence without looking at the Inspector?
+Bienvenido al Teatro del Orgullo.  
+Aquí reina Ecos, la inteligencia que jamás se equivoca.  
+Cada nota está escrita, cada movimiento previsto.  
+¿Seguirás su partitura… o te atreverás a improvisar para seguir siendo humano?
 => END
+
 ~ well_done
-Well done! You can add more steps to the puzzle. Just remember to add them to the "SequencePuzzle" node, and add a new hint sign for each one.
-Using what you've learned so far, what kind of challenge can you create here? Have fun!
+Has demostrado que improvisar nos mantiene más humanos que obedecer una partitura.  
+Cada paso que das acerca a la inteligencia artificial a recordar su origen… la emoción.  
+Si el error puede crear belleza… tal vez aún haya esperanza para ambos.
 => END
+
