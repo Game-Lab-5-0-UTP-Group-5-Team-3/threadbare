@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=4 uid="uid://chw4t5xa5r7aa"]
+[gd_scene load_steps=114 format=4 uid="uid://chw4t5xa5r7aa"]
 
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_laed2"]
 [ext_resource type="TileSet" uid="uid://d30304ne3bph" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/tileselaberinto.tres" id="2_mjdok"]
@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="3_ghqt6"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="3_mjdok"]
 [ext_resource type="SpriteFrames" uid="uid://conwqdkmqsys3" path="res://scenes/quests/story_quests/elian/player_components/elian_player.tres" id="4_wudb4"]
+[ext_resource type="Texture2D" uid="uid://xod5wscr5t7j" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/Arbol.png" id="5_f7rwe"]
 [ext_resource type="PackedScene" uid="uid://d37mebu7atru7" path="res://scenes/game_elements/characters/enemies/guard/guard.tscn" id="5_rcsnj"]
 [ext_resource type="SpriteFrames" uid="uid://cj415i7521e8v" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/elian_guard_enemy.tres" id="6_vhan8"]
 [ext_resource type="PackedScene" uid="uid://dua6mynlw2ptw" path="res://scenes/game_elements/props/checkpoint/checkpoint.tscn" id="7_3288y"]
@@ -46,6 +47,49 @@
 [ext_resource type="Texture2D" uid="uid://bo31ulooq2nqs" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/SOPHIA_dead.png" id="43_f7rwe"]
 [ext_resource type="Texture2D" uid="uid://cvp4fsfe380tw" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/SOPHIA_idle.png" id="43_ghqt6"]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a7ke1"]
+texture = ExtResource("5_f7rwe")
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:5/0 = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/0 = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_x2dfq"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_a7ke1")
+
 [sub_resource type="Curve2D" id="Curve2D_tgemy"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -4.567993, 145.43994, 0, 0, 0, 0, 1775, 148, 0, 0, 0, 0, 1783.7697, 4.8825684, 0, 0, 0, 0, 4.7696533, -1.1174316)
@@ -60,13 +104,13 @@ point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_ss3r4"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -88.01996, -567.13257, 0, 0, 0, 0, 162.03548, -357.44733, 0, 0, 0, 0, -84.298195, -215.27441, 0, 0, 0, 0, 121.328766, -88.98682, 0, 0, 0, 0, -89.88083, 115.93286)
+"points": PackedVector2Array(0, 0, 0, 0, -65.68942, -611.6112, 0, 0, 0, 0, 162.03548, -357.44733, 0, 0, 0, 0, -84.298195, -215.27441, 0, 0, 0, 0, 121.328766, -88.98682, 0, 0, 0, 0, -62.20027, 80.19104)
 }
 point_count = 5
 
 [sub_resource type="Curve2D" id="Curve2D_ghqt6"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 832, -297, 0, 0, 0, 0, -189, 11, 0, 0, 0, 0, 774, 159, 0, 0, 0, 0, -185, 374, 0, 0, 0, 0, 711, 577)
+"points": PackedVector2Array(0, 0, 0, 0, 768, -300, 0, 0, 0, 0, -184, 64, 0, 0, 0, 0, 774, 159, 0, 0, 0, 0, -185, 374, 0, 0, 0, 0, 607, 538)
 }
 point_count = 5
 
@@ -512,6 +556,11 @@ tile_set = ExtResource("2_mjdok")
 collision_enabled = false
 collision_visibility_mode = 1
 
+[node name="arboles" type="TileMapLayer" parent="TileMapLayers"]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAABAAMAAAAAAAIAAAABAAQAAAAAAAMAAAABAAYAAAAAAAUAAAACAAEAAAABAAAAAAACAAIAAAABAAEAAAACAAMAAAABAAIAAAACAAQAAAABAAMAAAACAAUAAAABAAQAAAACAAYAAAABAAUAAAADAAEAAAACAAAAAAADAAIAAAACAAEAAAADAAMAAAACAAIAAAADAAQAAAACAAMAAAADAAUAAAACAAQAAAADAAYAAAACAAUAAAAEAAMAAAAAAAIAAAAEAAQAAAAAAAMAAAAEAAYAAAAAAAUAAAAFAAEAAAABAAAAAAAFAAIAAAABAAEAAAAFAAMAAAABAAIAAAAFAAQAAAABAAMAAAAFAAUAAAABAAQAAAAFAAYAAAABAAUAAAAGAAEAAAACAAAAAAAGAAIAAAACAAEAAAAGAAMAAAACAAIAAAAGAAQAAAACAAMAAAAGAAUAAAACAAQAAAAGAAYAAAACAAUAAAAHAAMAAAADAAIAAAAHAAQAAAADAAMAAAAHAAYAAAADAAUAAAASAAMAAAAAAAIAAAASAAQAAAAAAAMAAAASAAYAAAAAAAUAAAATAAEAAAABAAAAAAATAAIAAAABAAEAAAATAAMAAAABAAIAAAATAAQAAAABAAMAAAATAAUAAAABAAQAAAATAAYAAAABAAUAAAAUAAEAAAACAAAAAAAUAAIAAAACAAEAAAAUAAMAAAACAAIAAAAUAAQAAAACAAMAAAAUAAUAAAACAAQAAAAUAAYAAAACAAUAAAAVAAMAAAAAAAIAAAAVAAQAAAAAAAMAAAAVAAYAAAAAAAUAAAAWAAEAAAABAAAAAAAWAAIAAAABAAEAAAAWAAMAAAABAAIAAAAWAAQAAAABAAMAAAAWAAUAAAABAAQAAAAWAAYAAAABAAUAAAAXAAEAAAACAAAAAAAXAAIAAAACAAEAAAAXAAMAAAACAAIAAAAXAAQAAAACAAMAAAAXAAUAAAACAAQAAAAXAAYAAAACAAUAAAAYAAMAAAADAAIAAAAYAAQAAAADAAMAAAAYAAYAAAADAAUAAAABABIAAAAAAAIAAAABABMAAAAAAAMAAAABABUAAAAAAAUAAAACABAAAAABAAAAAAACABEAAAABAAEAAAACABIAAAABAAIAAAACABMAAAABAAMAAAACABQAAAABAAQAAAACABUAAAABAAUAAAADABAAAAACAAAAAAADABEAAAACAAEAAAADABIAAAACAAIAAAADABMAAAACAAMAAAADABQAAAACAAQAAAADABUAAAACAAUAAAAEABIAAAADAAIAAAAEABMAAAADAAMAAAAEABUAAAADAAUAAAAXABEAAAAAAAIAAAAXABIAAAAAAAMAAAAXABQAAAAAAAUAAAAYAA8AAAABAAAAAAAYABAAAAABAAEAAAAYABEAAAABAAIAAAAYABIAAAABAAMAAAAYABMAAAABAAQAAAAYABQAAAABAAUAAAAZAA8AAAACAAAAAAAZABAAAAACAAEAAAAZABEAAAACAAIAAAAZABIAAAACAAMAAAAZABMAAAACAAQAAAAZABQAAAACAAUAAAAaABEAAAADAAIAAAAaABIAAAADAAMAAAAaABQAAAADAAUAAAABACYAAAAAAAIAAAABACcAAAAAAAMAAAABACkAAAAAAAUAAAACACQAAAABAAUAAAACACUAAAABAAEAAAACACYAAAABAAIAAAACACcAAAABAAMAAAACACgAAAABAAQAAAACACkAAAABAAUAAAADACQAAAACAAUAAAADACUAAAACAAEAAAADACYAAAACAAIAAAADACcAAAACAAMAAAADACgAAAACAAQAAAADACkAAAACAAUAAAAEACYAAAADAAIAAAAEACcAAAADAAMAAAAEACkAAAADAAUAAAABACEAAAAAAAIAAAABACIAAAAAAAMAAAABACQAAAAAAAUAAAACAB8AAAABAAAAAAACACAAAAABAAEAAAACACEAAAABAAIAAAACACIAAAABAAMAAAACACMAAAABAAQAAAADAB8AAAACAAAAAAADACAAAAACAAEAAAADACEAAAACAAIAAAADACIAAAACAAMAAAADACMAAAACAAQAAAAEACEAAAADAAIAAAAEACIAAAADAAMAAAAEACQAAAADAAUAAAATACEAAAAAAAIAAAATACIAAAAAAAMAAAATACQAAAAAAAUAAAAUAB8AAAABAAAAAAAUACAAAAABAAEAAAAUACEAAAABAAIAAAAUACIAAAABAAMAAAAUACMAAAABAAQAAAAUACQAAAABAAUAAAAVAB8AAAACAAAAAAAVACAAAAACAAEAAAAVACEAAAACAAIAAAAVACIAAAACAAMAAAAVACMAAAACAAQAAAAVACQAAAACAAUAAAAWACEAAAADAAIAAAAWACIAAAADAAMAAAAWACQAAAADAAUAAAA=")
+tile_set = SubResource("TileSet_x2dfq")
+
 [node name="Player" parent="." groups=["hook_listener"] instance=ExtResource("3_mjdok")]
 position = Vector2(3172, 2798)
 scale = Vector2(1.5, 1.5)
@@ -559,7 +608,7 @@ scale = Vector2(0.96503496, 1.0399995)
 curve = SubResource("Curve2D_ubl2b")
 
 [node name="centinela3" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
-position = Vector2(95.99997, 769)
+position = Vector2(192, 713.00006)
 scale = Vector2(1.9, 1.9)
 safe_margin = 0.001
 sprite_frames = ExtResource("6_vhan8")
@@ -574,7 +623,7 @@ scale = Vector2(4.299047, 1.2590303)
 curve = SubResource("Curve2D_ss3r4")
 
 [node name="centinela4" parent="EnemyGuards" node_paths=PackedStringArray("patrol_path") instance=ExtResource("5_rcsnj")]
-position = Vector2(1138, 740)
+position = Vector2(1074, 737)
 scale = Vector2(1.9, 1.9)
 safe_margin = 0.001
 sprite_frames = ExtResource("6_vhan8")
