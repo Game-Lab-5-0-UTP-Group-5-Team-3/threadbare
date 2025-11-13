@@ -2471,7 +2471,6 @@ direction = 1
 text = "First melody: yellow, green, blue."
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="HUD" parent="." instance=ExtResource("21_itfvh")]
 
@@ -2488,9 +2487,9 @@ metadata/_custom_type_script = "uid://x1mxt6bmei2o"
 [node name="Interactables" type="Node2D" parent="."]
 
 [node name="Keys" type="Node2D" parent="Interactables"]
-visible = false
 
 [node name="Key1" type="Area2D" parent="Interactables/Keys"]
+visible = false
 position = Vector2(1311, 1743)
 script = ExtResource("23_tlsqf")
 
