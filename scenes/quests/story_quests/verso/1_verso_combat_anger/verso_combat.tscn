@@ -312,7 +312,6 @@ sources/5 = SubResource("TileSetAtlasSource_yxv4n")
 
 [sub_resource type="Resource" id="Resource_a51xm"]
 script = ExtResource("9_ml8ui")
-name = ""
 type = 1
 metadata/_custom_type_script = "uid://bgmwplmj3bfls"
 
@@ -321,7 +320,6 @@ y_sort_enabled = true
 
 [node name="defeatGameLogic" type="Node" parent="."]
 script = ExtResource("1_2bah4")
-intro_dialogue = ExtResource("26_m5ihe")
 metadata/_custom_type_script = "uid://cp54mgi54nywo"
 
 [node name="TileMapLayers" type="Node2D" parent="."]
