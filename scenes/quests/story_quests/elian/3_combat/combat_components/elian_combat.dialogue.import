@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://dsojutg52mfa8"
+path="res://.godot/imported/elian_combat.dialogue-a194203c54d404c966e6ceb90aa4d0b0.tres"
+
+[deps]
+
+source_file="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_combat.dialogue"
+dest_files=["res://.godot/imported/elian_combat.dialogue-a194203c54d404c966e6ceb90aa4d0b0.tres"]
+
+[params]
+
+defaults=true
