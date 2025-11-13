@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bnltyomb8vcm5"]
+
+[ext_resource type="TileSet" uid="uid://dbrsk43iqfum1" path="res://scenes/quests/story_quests/elian/2_sequence_puzzle/PisosELian.tres" id="1_jys4f"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray(0, 0, 14, 0, 9, 0, 1, 0, 1, 0, 14, 0, 0, 0, 11, 0, 4, 0, 1, 0, 1, 0, 14, 0, 0, 0, 8, 0, 7, 0, 1, 0, 1, 0, 14, 0, 0, 0)
+tile_set = ExtResource("1_jys4f")

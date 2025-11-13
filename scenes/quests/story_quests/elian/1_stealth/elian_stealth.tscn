@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_laed2"]
 [ext_resource type="TileSet" uid="uid://d30304ne3bph" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/tileselaberinto.tres" id="2_mjdok"]
-[ext_resource type="TileSet" uid="uid://dbrsk43iqfum1" path="res://scenes/quests/story_quests/elian/3_sequence_puzzle/PisosELian.tres" id="3_a7ke1"]
+[ext_resource type="TileSet" uid="uid://dbrsk43iqfum1" path="res://scenes/quests/story_quests/elian/2_sequence_puzzle/PisosELian.tres" id="3_a7ke1"]
 [ext_resource type="TileSet" uid="uid://07fq3rspk8ia" path="res://scenes/tileset.tres" id="3_ghqt6"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="3_mjdok"]
 [ext_resource type="SpriteFrames" uid="uid://conwqdkmqsys3" path="res://scenes/quests/story_quests/elian/player_components/elian_player.tres" id="4_wudb4"]
@@ -670,7 +670,7 @@ debug_color = Color(0, 0, 0, 0.42)
 
 [node name="CollectibleItem" parent="." instance=ExtResource("10_7laax")]
 position = Vector2(3006, 243)
-next_scene = "uid://djwn808ajkq0n"
+next_scene = "uid://o7o0cmlybwko"
 item = SubResource("Resource_cxldm")
 collected_dialogue = ExtResource("12_4jcdn")
 
@@ -1038,7 +1038,6 @@ position = Vector2(2360, 350)
 position = Vector2(2, 9)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_bbdkf")
-animation = &"dead"
 autoplay = "default"
 
 [node name="InteractArea" type="Area2D" parent="Interactables/Boss"]
