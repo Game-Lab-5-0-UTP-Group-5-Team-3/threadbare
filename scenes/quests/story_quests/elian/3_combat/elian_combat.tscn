@@ -1,16 +1,19 @@
-[gd_scene load_steps=19 format=4 uid="uid://djwn808ajkq0n"]
+[gd_scene load_steps=22 format=4 uid="uid://djwn808ajkq0n"]
 
 [ext_resource type="Script" uid="uid://cp54mgi54nywo" path="res://scenes/game_logic/fill_game_logic.gd" id="1_5l1aj"]
-[ext_resource type="Resource" uid="uid://dsojutg52mfa8" path="res://scenes/quests/story_quests/elian/2_combat/combat_components/elian_combat.dialogue" id="2_46526"]
-[ext_resource type="Texture2D" uid="uid://clbr4n3edu140" path="res://scenes/quests/story_quests/elian/2_combat/combat_components/dungoen_tileset_png.png" id="4_46526"]
+[ext_resource type="Resource" uid="uid://dsojutg52mfa8" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_combat.dialogue" id="2_46526"]
+[ext_resource type="Script" uid="uid://c7mhyw74ssjpy" path="res://scenes/quests/story_quests/verso/1_verso_combat_anger/defeat_enemy.gd" id="3_eetwo"]
+[ext_resource type="Texture2D" uid="uid://clbr4n3edu140" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/dungoen_tileset_png.png" id="4_46526"]
 [ext_resource type="PackedScene" uid="uid://iu2q66clupc6" path="res://scenes/game_elements/characters/player/player.tscn" id="4_t0nxl"]
 [ext_resource type="SpriteFrames" uid="uid://conwqdkmqsys3" path="res://scenes/quests/story_quests/elian/player_components/elian_player.tres" id="5_0jbu2"]
 [ext_resource type="PackedScene" uid="uid://b82nsrh332syj" path="res://scenes/game_elements/characters/enemies/throwing_enemy/throwing_enemy.tscn" id="6_4yeew"]
-[ext_resource type="SpriteFrames" uid="uid://b4vsk8talxy3b" path="res://scenes/quests/story_quests/elian/2_combat/combat_components/elian_throwing_enemy.tres" id="7_wxxji"]
-[ext_resource type="SpriteFrames" uid="uid://dv7wdyriy7l8v" path="res://scenes/quests/story_quests/elian/2_combat/combat_components/elian_projectile_spriteframes.tres" id="8_gqjny"]
+[ext_resource type="SpriteFrames" uid="uid://b4vsk8talxy3b" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_throwing_enemy.tres" id="7_wxxji"]
+[ext_resource type="SpriteFrames" uid="uid://dv7wdyriy7l8v" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_projectile_spriteframes.tres" id="8_gqjny"]
 [ext_resource type="PackedScene" uid="uid://y8ha8abfyap2" path="res://scenes/game_elements/props/filling_barrel/filling_barrel.tscn" id="9_vn4j2"]
-[ext_resource type="SpriteFrames" uid="uid://newrrjgedmst" path="res://scenes/quests/story_quests/elian/2_combat/combat_components/elian_target_spriteframes.tres" id="10_iitj8"]
+[ext_resource type="SpriteFrames" uid="uid://newrrjgedmst" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_target_spriteframes.tres" id="10_iitj8"]
 [ext_resource type="PackedScene" uid="uid://fuhl3l6gxq5k" path="res://scenes/game_elements/props/collectible_item/collectible_item.tscn" id="11_8qoup"]
+[ext_resource type="Script" uid="uid://djmphyxuypgn1" path="res://scenes/quests/story_quests/verso/1_verso_combat_anger/verso_combat_components/throwing_enemy_health.gd" id="11_hqnem"]
+[ext_resource type="AudioStream" uid="uid://bwif2oo6ymiu2" path="res://assets/third_party/sounds/characters/enemies/guard/TorchHit.ogg" id="11_oeya1"]
 [ext_resource type="Script" uid="uid://bgmwplmj3bfls" path="res://scenes/globals/game_state/inventory/inventory_item.gd" id="12_e0bl2"]
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="13_ef421"]
 
@@ -359,6 +362,10 @@ script = ExtResource("1_5l1aj")
 intro_dialogue = ExtResource("2_46526")
 metadata/_custom_type_script = "uid://cp54mgi54nywo"
 
+[node name="defeatGameLogic" type="Node" parent="."]
+script = ExtResource("3_eetwo")
+metadata/_custom_type_script = "uid://cp54mgi54nywo"
+
 [node name="TileMapLayers" type="Node2D" parent="."]
 
 [node name="Grass" type="TileMapLayer" parent="TileMapLayers"]
@@ -374,55 +381,91 @@ y_sort_enabled = true
 position = Vector2(-925, 73)
 
 [node name="Player" parent="OnTheGround" instance=ExtResource("4_t0nxl")]
-position = Vector2(1542, 140)
+position = Vector2(1261, 255)
 sprite_frames = ExtResource("5_0jbu2")
 
 [node name="Camera2D" type="Camera2D" parent="OnTheGround/Player"]
 
 [node name="ThrowingNPC" parent="OnTheGround" instance=ExtResource("6_4yeew")]
-position = Vector2(857, 300)
+position = Vector2(2085, 1463)
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="ThrowingNPC2" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(1773, 1479)
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="ThrowingNPC3" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(2077, 1183)
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="ThrowingNPC4" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(1781, 1183)
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="ThrowingNPC5" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(3061, 1295)
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="ThrowingNPC6" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(3410, 1087)
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="ThrowingNPC7" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(3277, 1607)
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="ThrowingNPC8" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(3925, 1247)
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="BossN3" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(3485, 1367)
+script = ExtResource("11_hqnem")
+max_hp = null
+hit_sound = ExtResource("11_oeya1")
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="Sophia" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(4597, 2167)
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="Ecos" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(4773, 1935)
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="B3" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(4941, 2223)
+sprite_frames = ExtResource("7_wxxji")
+projectile_sprite_frames = ExtResource("8_gqjny")
+
+[node name="Eva" parent="OnTheGround" instance=ExtResource("6_4yeew")]
+position = Vector2(5597, 2079)
+script = ExtResource("11_hqnem")
+max_hp = null
+hit_sound = ExtResource("11_oeya1")
 sprite_frames = ExtResource("7_wxxji")
 projectile_sprite_frames = ExtResource("8_gqjny")
 
 [node name="Target" parent="OnTheGround" instance=ExtResource("9_vn4j2")]
-position = Vector2(502, 164)
-sprite_frames = ExtResource("10_iitj8")
-label = ""
-color = Color(1, 1, 1, 1)
-
-[node name="Target2" parent="OnTheGround" instance=ExtResource("9_vn4j2")]
-position = Vector2(758, 164)
-sprite_frames = ExtResource("10_iitj8")
-label = ""
-color = Color(1, 1, 1, 1)
-
-[node name="Target3" parent="OnTheGround" instance=ExtResource("9_vn4j2")]
-position = Vector2(761, 497)
-sprite_frames = ExtResource("10_iitj8")
-label = ""
-color = Color(1, 1, 1, 1)
-
-[node name="Target4" parent="OnTheGround" instance=ExtResource("9_vn4j2")]
-position = Vector2(632, 497)
-sprite_frames = ExtResource("10_iitj8")
-label = ""
-color = Color(1, 1, 1, 1)
-
-[node name="Target5" parent="OnTheGround" instance=ExtResource("9_vn4j2")]
-position = Vector2(633, 164)
-sprite_frames = ExtResource("10_iitj8")
-label = ""
-color = Color(1, 1, 1, 1)
-
-[node name="Target6" parent="OnTheGround" instance=ExtResource("9_vn4j2")]
-position = Vector2(501, 497)
+position = Vector2(2349, 1300)
 sprite_frames = ExtResource("10_iitj8")
 label = ""
 color = Color(1, 1, 1, 1)
 
 [node name="CollectibleItem" parent="OnTheGround" instance=ExtResource("11_8qoup")]
 unique_name_in_owner = true
-position = Vector2(868, 303)
+position = Vector2(5277, 2127)
 revealed = false
 next_scene = "uid://o7o0cmlybwko"
 item = SubResource("Resource_cgdjt")
@@ -442,4 +485,6 @@ limit_bottom = 2048
 position_smoothing_enabled = true
 editor_draw_limits = true
 
-[connection signal="goal_reached" from="FillGameLogic" to="OnTheGround/CollectibleItem" method="reveal"]
+[connection signal="goal_reached" from="defeatGameLogic" to="OnTheGround/CollectibleItem" method="reveal"]
+[connection signal="defeated" from="OnTheGround/BossN3" to="defeatGameLogic" method="_on_enemy_defeated"]
+[connection signal="defeated" from="OnTheGround/Eva" to="defeatGameLogic" method="_on_enemy_defeated"]

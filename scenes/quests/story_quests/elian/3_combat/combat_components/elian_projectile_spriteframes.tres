@@ -1,6 +1,6 @@
 [gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://dv7wdyriy7l8v"]
 
-[ext_resource type="Texture2D" uid="uid://bfqivu1axw5qd" path="res://scenes/quests/story_quests/elian/2_combat/combat_components/elian_projectile.png" id="1_07k8g"]
+[ext_resource type="Texture2D" uid="uid://bfqivu1axw5qd" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_projectile.png" id="1_07k8g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a6ony"]
 atlas = ExtResource("1_07k8g")

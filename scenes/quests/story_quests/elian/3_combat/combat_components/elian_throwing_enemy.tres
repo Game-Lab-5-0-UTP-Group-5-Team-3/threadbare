@@ -1,9 +1,9 @@
 [gd_resource type="SpriteFrames" load_steps=25 format=3 uid="uid://b4vsk8talxy3b"]
 
-[ext_resource type="Texture2D" uid="uid://dmwamodds52vo" path="res://scenes/quests/story_quests/elian/2_combat/combat_components/elian_throwing_enemy_attack.png" id="1_8fbvw"]
-[ext_resource type="Texture2D" uid="uid://c1xk85nee0r6p" path="res://scenes/quests/story_quests/elian/2_combat/combat_components/elian_throwing_enemy_defeated.png" id="2_q6xsq"]
-[ext_resource type="Texture2D" uid="uid://emwq77de3bij" path="res://scenes/quests/story_quests/elian/2_combat/combat_components/elian_throwing_enemy_idle.png" id="3_klegi"]
-[ext_resource type="Texture2D" uid="uid://caiqo0q1050wx" path="res://scenes/quests/story_quests/elian/2_combat/combat_components/elian_throwing_enemy_walk.png" id="4_7hfof"]
+[ext_resource type="Texture2D" uid="uid://dmwamodds52vo" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_throwing_enemy_attack.png" id="1_8fbvw"]
+[ext_resource type="Texture2D" uid="uid://c1xk85nee0r6p" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_throwing_enemy_defeated.png" id="2_q6xsq"]
+[ext_resource type="Texture2D" uid="uid://emwq77de3bij" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_throwing_enemy_idle.png" id="3_klegi"]
+[ext_resource type="Texture2D" uid="uid://caiqo0q1050wx" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_throwing_enemy_walk.png" id="4_7hfof"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mind4"]
 atlas = ExtResource("1_8fbvw")
