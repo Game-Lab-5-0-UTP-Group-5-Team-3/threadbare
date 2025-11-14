@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=4 uid="uid://djwn808ajkq0n"]
+[gd_scene load_steps=41 format=4 uid="uid://djwn808ajkq0n"]
 
 [ext_resource type="Script" uid="uid://cp54mgi54nywo" path="res://scenes/game_logic/fill_game_logic.gd" id="1_5l1aj"]
 [ext_resource type="Resource" uid="uid://dsojutg52mfa8" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_combat.dialogue" id="2_46526"]
@@ -16,13 +16,19 @@
 [ext_resource type="AudioStream" uid="uid://bwif2oo6ymiu2" path="res://assets/third_party/sounds/characters/enemies/guard/TorchHit.ogg" id="11_oeya1"]
 [ext_resource type="Script" uid="uid://bgmwplmj3bfls" path="res://scenes/globals/game_state/inventory/inventory_item.gd" id="12_e0bl2"]
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="13_ef421"]
-[ext_resource type="Script" uid="uid://c188n6dlno0mu" path="res://scenes/quests/story_quests/elian/3_combat/key_door.gd" id="16_lpf7l"]
+[ext_resource type="Script" path="res://scenes/quests/story_quests/elian/3_combat/key_door.gd" id="16_lpf7l"]
 [ext_resource type="AudioStream" uid="uid://b0d3tfg0p06bp" path="res://assets/first_party/sounds/mushroom/sh.ogg" id="17_3ghbs"]
 [ext_resource type="Texture2D" uid="uid://boeaxk35yjpwl" path="res://scenes/game_elements/props/door/components/door_closed.png" id="17_swwhc"]
-[ext_resource type="Script" uid="uid://el3bn7rx1n1o" path="res://scenes/quests/story_quests/elian/3_combat/key_item.gd" id="18_01g3a"]
+[ext_resource type="Script" path="res://scenes/quests/story_quests/elian/3_combat/key_item.gd" id="18_01g3a"]
 [ext_resource type="Texture2D" uid="uid://b8yn4tog2cnaw" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/estructuras(decoracion)/llave 1.png" id="19_w1pb6"]
-[ext_resource type="Script" uid="uid://dgenhiygvrf1t" path="res://scenes/quests/story_quests/elian/3_combat/key_door_controller.gd" id="21_w1pb6"]
-[ext_resource type="Script" uid="uid://ddfmhmk03defk" path="res://scenes/quests/story_quests/elian/3_combat/boss_door_controller.gd" id="22_6fyiu"]
+[ext_resource type="Script" path="res://scenes/quests/story_quests/elian/3_combat/key_door_controller.gd" id="21_w1pb6"]
+[ext_resource type="Script" uid="uid://b08mp14v4yxm5" path="res://scenes/quests/story_quests/elian/3_combat/black_hole.gd" id="21_ybsj7"]
+[ext_resource type="Script" path="res://scenes/quests/story_quests/elian/3_combat/boss_door_controller.gd" id="22_6fyiu"]
+[ext_resource type="Texture2D" uid="uid://dcfwrs4rw5qy0" path="res://scenes/game_elements/props/decoration/spool/components/ThreadSpool2.png" id="22_fq8bf"]
+[ext_resource type="Script" uid="uid://d1nphfp50ovm" path="res://scenes/quests/story_quests/elian/3_combat/chase_trigger.gd" id="22_qpe70"]
+[ext_resource type="Script" uid="uid://b24eejxk4smix" path="res://scenes/quests/story_quests/elian/3_combat/blocking_door.gd" id="24_cxybt"]
+[ext_resource type="Texture2D" uid="uid://bwycwmhn0d3oe" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/estructuras(decoracion)/puertagrande1.png" id="24_socl4"]
+[ext_resource type="AudioStream" uid="uid://1gnb8sf687eo" path="res://assets/first_party/sounds/mushroom/Hu.ogg" id="26_rfr6i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5l1aj"]
 texture = ExtResource("4_46526")
@@ -370,6 +376,15 @@ radius = 68.42514
 [sub_resource type="CircleShape2D" id="CircleShape2D_6fyiu"]
 radius = 35.77709
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fq8bf"]
+size = Vector2(169, 232)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qpe70"]
+size = Vector2(248, 640)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_socl4"]
+size = Vector2(504, 515)
+
 [node name="Combat" type="Node2D"]
 y_sort_enabled = true
 
@@ -397,7 +412,7 @@ y_sort_enabled = true
 position = Vector2(-925, 73)
 
 [node name="Player" parent="OnTheGround" instance=ExtResource("4_t0nxl")]
-position = Vector2(3677, 1495)
+position = Vector2(1253, 815)
 sprite_frames = ExtResource("5_0jbu2")
 
 [node name="Camera2D" type="Camera2D" parent="OnTheGround/Player"]
@@ -535,6 +550,52 @@ texture = ExtResource("19_w1pb6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/KeyItem1/Area2D"]
 position = Vector2(8, 0)
 shape = SubResource("CircleShape2D_6fyiu")
+
+[node name="BlackHole" type="Node2D" parent="OnTheGround"]
+position = Vector2(1269, 1353)
+script = ExtResource("21_ybsj7")
+speed = 100.0
+start_position = Vector2(1289, 1407)
+end_position = Vector2(6789, 1351)
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/BlackHole"]
+z_index = 100
+scale = Vector2(5, 5)
+texture = ExtResource("22_fq8bf")
+
+[node name="Area2D" type="Area2D" parent="OnTheGround/BlackHole"]
+position = Vector2(-112, 84)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/BlackHole/Area2D"]
+position = Vector2(115.5, -90)
+shape = SubResource("RectangleShape2D_fq8bf")
+
+[node name="ChaseTrigger" type="Area2D" parent="OnTheGround"]
+script = ExtResource("22_qpe70")
+chaser_path = NodePath("../BlackHole")
+door_path = NodePath("../BlockingDoor")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/ChaseTrigger"]
+position = Vector2(1701, 1311)
+shape = SubResource("RectangleShape2D_qpe70")
+
+[node name="BlockingDoor" type="Node2D" parent="OnTheGround" groups=["blocking_door"]]
+position = Vector2(1469, 1367)
+script = ExtResource("24_cxybt")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/BlockingDoor"]
+position = Vector2(-40, 8)
+scale = Vector2(4, 4)
+texture = ExtResource("24_socl4")
+
+[node name="Collider" type="StaticBody2D" parent="OnTheGround/BlockingDoor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/BlockingDoor/Collider"]
+position = Vector2(-32, -1.5)
+shape = SubResource("RectangleShape2D_socl4")
+
+[node name="OpenSound" type="AudioStreamPlayer2D" parent="OnTheGround/BlockingDoor"]
+stream = ExtResource("26_rfr6i")
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
 
