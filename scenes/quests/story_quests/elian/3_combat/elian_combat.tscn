@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://djwn808ajkq0n"]
+[gd_scene load_steps=32 format=4 uid="uid://djwn808ajkq0n"]
 
 [ext_resource type="Script" uid="uid://cp54mgi54nywo" path="res://scenes/game_logic/fill_game_logic.gd" id="1_5l1aj"]
 [ext_resource type="Resource" uid="uid://dsojutg52mfa8" path="res://scenes/quests/story_quests/elian/3_combat/combat_components/elian_combat.dialogue" id="2_46526"]
@@ -16,6 +16,13 @@
 [ext_resource type="AudioStream" uid="uid://bwif2oo6ymiu2" path="res://assets/third_party/sounds/characters/enemies/guard/TorchHit.ogg" id="11_oeya1"]
 [ext_resource type="Script" uid="uid://bgmwplmj3bfls" path="res://scenes/globals/game_state/inventory/inventory_item.gd" id="12_e0bl2"]
 [ext_resource type="PackedScene" uid="uid://cfcgrfvtn04yp" path="res://scenes/ui_elements/hud/hud.tscn" id="13_ef421"]
+[ext_resource type="Script" uid="uid://c188n6dlno0mu" path="res://scenes/quests/story_quests/elian/3_combat/key_door.gd" id="16_lpf7l"]
+[ext_resource type="AudioStream" uid="uid://b0d3tfg0p06bp" path="res://assets/first_party/sounds/mushroom/sh.ogg" id="17_3ghbs"]
+[ext_resource type="Texture2D" uid="uid://boeaxk35yjpwl" path="res://scenes/game_elements/props/door/components/door_closed.png" id="17_swwhc"]
+[ext_resource type="Script" uid="uid://el3bn7rx1n1o" path="res://scenes/quests/story_quests/elian/3_combat/key_item.gd" id="18_01g3a"]
+[ext_resource type="Texture2D" uid="uid://b8yn4tog2cnaw" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/personajes/estructuras(decoracion)/llave 1.png" id="19_w1pb6"]
+[ext_resource type="Script" uid="uid://dgenhiygvrf1t" path="res://scenes/quests/story_quests/elian/3_combat/key_door_controller.gd" id="21_w1pb6"]
+[ext_resource type="Script" uid="uid://ddfmhmk03defk" path="res://scenes/quests/story_quests/elian/3_combat/boss_door_controller.gd" id="22_6fyiu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5l1aj"]
 texture = ExtResource("4_46526")
@@ -354,6 +361,15 @@ script = ExtResource("12_e0bl2")
 type = 1
 metadata/_custom_type_script = "uid://bgmwplmj3bfls"
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_01g3a"]
+radius = 50.537113
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w1pb6"]
+radius = 68.42514
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6fyiu"]
+radius = 35.77709
+
 [node name="Combat" type="Node2D"]
 y_sort_enabled = true
 
@@ -381,7 +397,7 @@ y_sort_enabled = true
 position = Vector2(-925, 73)
 
 [node name="Player" parent="OnTheGround" instance=ExtResource("4_t0nxl")]
-position = Vector2(1261, 255)
+position = Vector2(3677, 1495)
 sprite_frames = ExtResource("5_0jbu2")
 
 [node name="Camera2D" type="Camera2D" parent="OnTheGround/Player"]
@@ -429,7 +445,7 @@ projectile_sprite_frames = ExtResource("8_gqjny")
 [node name="BossN3" parent="OnTheGround" instance=ExtResource("6_4yeew")]
 position = Vector2(3485, 1367)
 script = ExtResource("11_hqnem")
-max_hp = null
+max_hp = 3
 hit_sound = ExtResource("11_oeya1")
 sprite_frames = ExtResource("7_wxxji")
 projectile_sprite_frames = ExtResource("8_gqjny")
@@ -452,7 +468,7 @@ projectile_sprite_frames = ExtResource("8_gqjny")
 [node name="Eva" parent="OnTheGround" instance=ExtResource("6_4yeew")]
 position = Vector2(5597, 2079)
 script = ExtResource("11_hqnem")
-max_hp = null
+max_hp = 3
 hit_sound = ExtResource("11_oeya1")
 sprite_frames = ExtResource("7_wxxji")
 projectile_sprite_frames = ExtResource("8_gqjny")
@@ -467,10 +483,58 @@ color = Color(1, 1, 1, 1)
 unique_name_in_owner = true
 position = Vector2(5277, 2127)
 revealed = false
-next_scene = "uid://o7o0cmlybwko"
+next_scene = "uid://cdgl7npoa4ego"
 item = SubResource("Resource_cgdjt")
 collected_dialogue = ExtResource("2_46526")
 dialogue_title = &"well_done"
+
+[node name="KeyDoor" type="StaticBody2D" parent="OnTheGround"]
+position = Vector2(1565, 111)
+script = ExtResource("16_lpf7l")
+open_sound = ExtResource("17_3ghbs")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/KeyDoor"]
+texture = ExtResource("17_swwhc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/KeyDoor"]
+shape = SubResource("CircleShape2D_01g3a")
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/KeyDoor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/KeyDoor/InteractArea"]
+shape = SubResource("CircleShape2D_w1pb6")
+
+[node name="OpenSound" type="AudioStreamPlayer2D" parent="OnTheGround/KeyDoor"]
+
+[node name="BossDoor" type="StaticBody2D" parent="OnTheGround"]
+position = Vector2(4213, 1353)
+script = ExtResource("16_lpf7l")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/BossDoor"]
+texture = ExtResource("17_swwhc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/BossDoor"]
+shape = SubResource("CircleShape2D_01g3a")
+
+[node name="InteractArea" type="Area2D" parent="OnTheGround/BossDoor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/BossDoor/InteractArea"]
+shape = SubResource("CircleShape2D_w1pb6")
+
+[node name="OpenSound" type="AudioStreamPlayer2D" parent="OnTheGround/BossDoor"]
+
+[node name="KeyItem1" type="Node2D" parent="OnTheGround"]
+position = Vector2(1357, 367)
+script = ExtResource("18_01g3a")
+
+[node name="Sprite2D" type="Sprite2D" parent="OnTheGround/KeyItem1"]
+texture = ExtResource("19_w1pb6")
+
+[node name="Area2D" type="Area2D" parent="OnTheGround/KeyItem1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OnTheGround/KeyItem1/Area2D"]
+position = Vector2(8, 0)
+shape = SubResource("CircleShape2D_6fyiu")
 
 [node name="ScreenOverlay" type="CanvasLayer" parent="."]
 
@@ -484,6 +548,16 @@ limit_right = 2048
 limit_bottom = 2048
 position_smoothing_enabled = true
 editor_draw_limits = true
+
+[node name="KeyDoorController" type="Node" parent="."]
+script = ExtResource("21_w1pb6")
+key_item_path = NodePath("../OnTheGround/KeyItem1")
+door_path = NodePath("../OnTheGround/KeyDoor")
+
+[node name="BossDoorController" type="Node" parent="."]
+script = ExtResource("22_6fyiu")
+boss_path = NodePath("../OnTheGround/BossN3")
+door_path = NodePath("../OnTheGround/BossDoor")
 
 [connection signal="goal_reached" from="defeatGameLogic" to="OnTheGround/CollectibleItem" method="reveal"]
 [connection signal="defeated" from="OnTheGround/BossN3" to="defeatGameLogic" method="_on_enemy_defeated"]
