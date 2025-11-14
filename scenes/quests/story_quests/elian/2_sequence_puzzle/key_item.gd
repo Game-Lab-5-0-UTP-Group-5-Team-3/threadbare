@@ -1,14 +1,28 @@
 extends Area2D
 
-## Esta señal avisa al KeySystem que se recogió una llave.
+## Señal para KeySystem
 signal picked(key_id: String)
 
+@onready var pick_sound: AudioStreamPlayer2D = $PickpSound
+
 func _ready():
-	# Opcional: conecta automáticamente la colisión con el jugador si usas un grupo "player"
 	monitoring = true
 	monitorable = true
+	# ❌ NO conectamos body_entered aquí
+	# porque ya está conectado desde el editor
+
 
 func _on_body_entered(body):
-	if body.is_in_group("player"):
-		picked.emit(name)  # envía el nombre del nodo: "Key1" o "Key2"
-		queue_free()  # elimina la llave del mapa
+	if not body.is_in_group("player"):
+		return
+
+	# Avisar al KeySystem
+	picked.emit(name)
+
+	# Reproducir sonido si existe
+	if pick_sound and pick_sound.stream:
+		pick_sound.play()
+		await get_tree().create_timer(0.25).timeout
+
+	# Remover la llave del mapa
+	queue_free()
