@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=4 uid="uid://o7o0cmlybwko"]
+[gd_scene load_steps=52 format=4 uid="uid://o7o0cmlybwko"]
 
 [ext_resource type="TileSet" uid="uid://d3mfb536td2eq" path="res://scenes/quests/story_quests/elian/2_sequence_puzzle/ElianOpera.tres" id="1_e1cf0"]
 [ext_resource type="TileSet" uid="uid://dbrsk43iqfum1" path="res://scenes/quests/story_quests/elian/2_sequence_puzzle/PisosELian.tres" id="1_khisk"]
@@ -39,6 +39,7 @@
 [ext_resource type="Script" uid="uid://cq8gxcsusdrdv" path="res://scenes/quests/story_quests/elian/2_sequence_puzzle/key_system.gd" id="27_tlsqf"]
 [ext_resource type="Script" uid="uid://ccbrpqcogcdwk" path="res://scenes/quests/story_quests/elian/2_sequence_puzzle/keys_hud.gd" id="30_6caan"]
 [ext_resource type="Resource" uid="uid://hbddy20ks1pv" path="res://scenes/quests/story_quests/elian/2_sequence_puzzle/door.dialogue" id="35_e1cf0"]
+[ext_resource type="AudioStream" uid="uid://1gnb8sf687eo" path="res://assets/first_party/sounds/mushroom/Hu.ogg" id="38_fnmtm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tvi5x"]
 texture = ExtResource("3_mp2c4")
@@ -2502,6 +2503,7 @@ disabled = true
 
 [node name="PickpSound" type="AudioStreamPlayer2D" parent="Interactables/Keys/Key1"]
 position = Vector2(3, 9)
+stream = ExtResource("38_fnmtm")
 
 [node name="Key2" type="Area2D" parent="Interactables/Keys"]
 visible = false
@@ -2516,6 +2518,7 @@ shape = SubResource("CircleShape2D_tlsqf")
 disabled = true
 
 [node name="PickpSound" type="AudioStreamPlayer2D" parent="Interactables/Keys/Key2"]
+stream = ExtResource("38_fnmtm")
 
 [node name="Door" type="StaticBody2D" parent="Interactables"]
 position = Vector2(1734, 1034)
@@ -2547,21 +2550,24 @@ dialogue = ExtResource("35_e1cf0")
 interact_area = NodePath("../InteractArea")
 metadata/_custom_type_script = "uid://edcifob4jc4s"
 
+[node name="OpenSound" type="AudioStreamPlayer" parent="Interactables/Door"]
+stream = ExtResource("38_fnmtm")
+
 [node name="KeySystem" type="Node" parent="."]
 script = ExtResource("27_tlsqf")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
 [node name="StoryHUDs" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="KeysHUD" type="CanvasLayer" parent="StoryHUDs"]
+layer = 3
+offset = Vector2(20, 20)
+transform = Transform2D(1, 0, 0, 1, 20, 20)
 script = ExtResource("30_6caan")
 
 [node name="CountLabel" type="Label" parent="StoryHUDs/KeysHUD"]
-offset_left = -967.0
-offset_top = -59.0
-offset_right = -927.0
-offset_bottom = -25.0
+offset_right = 40.0
+offset_bottom = 34.0
 theme_override_font_sizes/font_size = 24
 metadata/_edit_use_anchors_ = true
 
@@ -2569,10 +2575,9 @@ metadata/_edit_use_anchors_ = true
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -1623.0
-offset_top = -27.0
-offset_right = -1583.0
-offset_bottom = 7.0
+offset_left = -640.0
+offset_right = -600.0
+offset_bottom = 34.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
