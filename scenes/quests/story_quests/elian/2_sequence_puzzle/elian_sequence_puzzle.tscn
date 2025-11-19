@@ -7039,7 +7039,7 @@ hint_sign = NodePath("../../Signs/HintSign1")
 
 [node name="SequencePuzzleStep2" type="Node2D" parent="OnTheGround/SequencePuzzle/Steps" node_paths=PackedStringArray("sequence", "hint_sign")]
 script = ExtResource("16_e1cf0")
-sequence = [NodePath("../../Objects/Blue"), NodePath("../../Objects/Green"), NodePath("../../Objects/Yellow"), NodePath("../../Objects/Green"), NodePath("../../Objects/Pink"), NodePath("../../Objects/Red"), NodePath("../../Objects/Blue")]
+sequence = [NodePath("../../Objects/Blue"), NodePath("../../Objects/Green"), NodePath("../../Objects/Yellow"), NodePath("../../Objects/Green"), NodePath("../../Objects/Blue")]
 hint_sign = NodePath("../../Signs/HintSign2")
 
 [node name="BossController" type="Node2D" parent="OnTheGround/SequencePuzzle"]
@@ -7084,13 +7084,13 @@ sprite_frames = ExtResource("15_imkop")
 [node name="Sub1_SequencePuzzleStep1" type="Node2D" parent="OnTheGround/Sub1Controller" node_paths=PackedStringArray("sequence", "hint_sign")]
 position = Vector2(-984, -75)
 script = ExtResource("16_e1cf0")
-sequence = [NodePath("../Sub1_Blue"), NodePath("../Sub1_Green"), NodePath("../Sub1_Red")]
+sequence = [NodePath("../Sub1_Blue"), NodePath("../Sub1_Blue"), NodePath("../Sub1_Red")]
 hint_sign = NodePath("../Sub1_HintSign1")
 
 [node name="Sub1_SequencePuzzleStep2" type="Node2D" parent="OnTheGround/Sub1Controller" node_paths=PackedStringArray("sequence", "hint_sign")]
 position = Vector2(-984, -75)
 script = ExtResource("16_e1cf0")
-sequence = [NodePath("../Sub1_Red"), NodePath("../Sub1_Blue"), NodePath("../Sub1_Red"), NodePath("../Sub1_Green")]
+sequence = [NodePath("../Sub1_Red"), NodePath("../Sub1_Green"), NodePath("../Sub1_Blue")]
 hint_sign = NodePath("../Sub1_HintSign2")
 
 [node name="Sub1_Blue" parent="OnTheGround/Sub1Controller" instance=ExtResource("5_7jdtm")]
@@ -7126,13 +7126,13 @@ sprite_frames = ExtResource("15_imkop")
 [node name="Sub2_SequencePuzzleStep1" type="Node2D" parent="OnTheGround/Sub2Controller" node_paths=PackedStringArray("sequence", "hint_sign")]
 position = Vector2(-984, -75)
 script = ExtResource("16_e1cf0")
-sequence = [NodePath("../Sub2_Red"), NodePath("../Sub2_Green"), NodePath("../Sub2_Blue")]
+sequence = [NodePath("../Sub2_Red"), NodePath("../Sub2_Red"), NodePath("../Sub2_Blue")]
 hint_sign = NodePath("../Sub2_HintSign1")
 
 [node name="Sub2_SequencePuzzleStep2" type="Node2D" parent="OnTheGround/Sub2Controller" node_paths=PackedStringArray("sequence", "hint_sign")]
 position = Vector2(-984, -75)
 script = ExtResource("16_e1cf0")
-sequence = [NodePath("../Sub2_Blue"), NodePath("../Sub2_Blue"), NodePath("../Sub2_Green"), NodePath("../Sub2_Red")]
+sequence = [NodePath("../Sub2_Blue"), NodePath("../Sub2_Green"), NodePath("../Sub2_Red")]
 hint_sign = NodePath("../Sub2_HintSign2")
 
 [node name="Sub2_Green" parent="OnTheGround/Sub2Controller" instance=ExtResource("5_7jdtm")]
