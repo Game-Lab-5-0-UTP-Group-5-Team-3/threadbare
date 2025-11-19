@@ -60,4 +60,4 @@ func _open_door() -> void:
 	# ============================
 	# 🚪 DESACTIVAR COLISIÓN
 	# ============================
-	$CollisionShape2D.disabled = true
+	$CollisionShape2D.set_deferred("disabled", true)

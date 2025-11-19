@@ -60,9 +60,9 @@ func _open_door() -> void:
 	opened = true
 
 	if collision:
-		collision.disabled = true
+		collision.set_deferred("disabled", true)
 	if sprite:
 		sprite.visible = false
 
-	# Elimina el nodo de la puerta del nivel
-	queue_free()
+	# Eliminar la puerta de forma segura
+	call_deferred("queue_free")
