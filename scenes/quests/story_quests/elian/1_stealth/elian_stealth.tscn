@@ -10626,7 +10626,7 @@ tile_map_data = PackedByteArray("AAABAAoAFwABAAUAAAACAAoAFwABAAUAAAADAAoAFwABAAU
 tile_set = SubResource("TileSet_wafhl")
 
 [node name="Player" parent="." groups=["hook_listener"] instance=ExtResource("3_mjdok")]
-position = Vector2(608.00024, 1897)
+position = Vector2(3138, 2714)
 scale = Vector2(1.5, 1.5)
 sprite_frames = ExtResource("4_wudb4")
 
