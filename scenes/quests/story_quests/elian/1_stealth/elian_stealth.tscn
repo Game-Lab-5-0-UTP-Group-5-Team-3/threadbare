@@ -1,4 +1,4 @@
-[gd_scene load_steps=120 format=4 uid="uid://chw4t5xa5r7aa"]
+[gd_scene load_steps=121 format=4 uid="uid://chw4t5xa5r7aa"]
 
 [ext_resource type="Script" uid="uid://dnp0tjloec2d7" path="res://scenes/game_logic/stealth_game_logic.gd" id="1_laed2"]
 [ext_resource type="TileSet" uid="uid://d30304ne3bph" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/tileselaberinto.tres" id="2_mjdok"]
@@ -48,6 +48,7 @@
 [ext_resource type="Resource" uid="uid://bb5giuvmtcm82" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/sophia.dialogue" id="42_uwax4"]
 [ext_resource type="Texture2D" uid="uid://bo31ulooq2nqs" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/SOPHIA_dead.png" id="43_f7rwe"]
 [ext_resource type="Texture2D" uid="uid://cvp4fsfe380tw" path="res://scenes/quests/story_quests/elian/1_stealth/stealth_components/SOPHIA_idle.png" id="43_ghqt6"]
+[ext_resource type="AudioStream" uid="uid://b0d3tfg0p06bp" path="res://assets/first_party/sounds/mushroom/sh.ogg" id="48_bbdkf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a7ke1"]
 texture = ExtResource("5_f7rwe")
@@ -10533,7 +10534,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"dead",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -10824,6 +10825,9 @@ script = ExtResource("21_3pchq")
 interact_area = NodePath("../InteractArea")
 metadata/_custom_type_script = "uid://edcifob4jc4s"
 
+[node name="OpenSound" type="AudioStreamPlayer2D" parent="Interactables/Door"]
+stream = ExtResource("48_bbdkf")
+
 [node name="Sign1" type="Node2D" parent="Interactables"]
 position = Vector2(3480, 2604)
 
@@ -11101,6 +11105,7 @@ position = Vector2(2104, 445)
 position = Vector2(2, 9)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_bbdkf")
+animation = &"dead"
 autoplay = "default"
 
 [node name="InteractArea" type="Area2D" parent="Interactables/Boss"]
@@ -11119,6 +11124,9 @@ script = ExtResource("21_3pchq")
 dialogue = ExtResource("42_uwax4")
 interact_area = NodePath("../InteractArea")
 metadata/_custom_type_script = "uid://edcifob4jc4s"
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="Interactables/Boss"]
+stream = ExtResource("48_bbdkf")
 
 [node name="KeySystem" type="Node" parent="."]
 script = ExtResource("19_vhan8")
