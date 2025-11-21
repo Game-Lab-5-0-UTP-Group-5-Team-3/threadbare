@@ -5,20 +5,20 @@
 do animation_player.play(&"walk_on")
 do animation_player.animation_finished
 
-Angelo: ¿Quién eres tú? ¿Acaso eres… humano?
+EVA: ¿Quién eres tú? ¿Acaso eres… humano?
 
 Elian: Soy Elian… pero, ¿qué es este lugar? ¿Y quién eres tú?
 
-Angelo: Estás en el Núcleo. Aquí analizamos y perfeccionamos los errores de cada mente.
+EVA: Estás en el Núcleo. Aquí analizamos y perfeccionamos los errores de cada mente.
 Pero tú… no apareces en mis registros.
 
 Elian: Soy parte de la consciencia humana. Sentí que iba a desaparecer por tu culpa… y ahora estoy aquí.
 
-Angelo: No te preocupes. Te corregiré.
+EVA: No te preocupes. Te corregiré.
 
 Elian: ¡No! Si estoy aquí es porque la humanidad merece volver a sentir, razonar, juzgar… no solo aceptar tus mejoras.
 
-Angelo: ¿Crees que un error como tú puede desafiarme? Veamos si eres capaz de hacerlo.
+EVA: ¿Crees que un error como tú puede desafiarme? Veamos si eres capaz de hacerlo.
 
 do animation_player.play(&"walk_off")
 => END
