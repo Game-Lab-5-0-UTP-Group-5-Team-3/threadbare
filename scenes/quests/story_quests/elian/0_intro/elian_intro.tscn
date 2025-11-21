@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://d30304ne3bph" path="res://scenes/quests/story_quests/shjourney/4_Laberinto/tileselaberinto.tres" id="1_qhdv7"]
 [ext_resource type="PackedScene" uid="uid://b7ujlfgbr834c" path="res://scenes/quests/story_quests/elian/0_intro/character_base.tscn" id="4_qhdv7"]
 [ext_resource type="Script" uid="uid://x1mxt6bmei2o" path="res://scenes/ui_elements/cinematic/cinematic.gd" id="4_y25yr"]
-[ext_resource type="Script" path="res://scenes/quests/story_quests/elian/0_intro/camerafollow_2d.gd" id="5_f4cgy"]
+[ext_resource type="Script" uid="uid://b14f4bmpm7ypa" path="res://scenes/quests/story_quests/elian/0_intro/camerafollow_2d.gd" id="5_f4cgy"]
 [ext_resource type="Resource" uid="uid://bsd67af683lgm" path="res://scenes/quests/story_quests/elian/0_intro/intro_components/elian_intro.dialogue" id="5_qhdv7"]
 [ext_resource type="Shader" uid="uid://b7yis14t58sj0" path="res://scenes/quests/story_quests/elian/0_intro/elian_intro.gdshader" id="5_y25yr"]
 [ext_resource type="PackedScene" uid="uid://v3usqiwy5wpr" path="res://scenes/game_elements/props/decoration/rock/rock.tscn" id="6_f4cgy"]
@@ -126,9 +126,9 @@ shader_parameter/border_color = Vector3(0, 0, 0)
 shader_parameter/line_color = Vector3(0, 1, 0)
 shader_parameter/fall_speed = 1.0
 shader_parameter/line_density = 40.0
-shader_parameter/line_spacing = 0.015
-shader_parameter/line_thickness = 0.02
-shader_parameter/brightness = 1.5
+shader_parameter/line_spacing = 0.15
+shader_parameter/line_thickness = 1.0
+shader_parameter/brightness = 0.6
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qhdv7"]
 shader = ExtResource("5_y25yr")
